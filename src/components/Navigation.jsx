@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,44 +9,55 @@ const Navigation = () => {
       setScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     // Simple CSS animation for navigation items
-    const navItems = document.querySelectorAll('.nav-item');
+    const navItems = document.querySelectorAll(".nav-item");
     navItems.forEach((item, index) => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(-20px)';
-      item.style.transition = 'all 0.6s ease-out';
-      
+      item.style.opacity = "0";
+      item.style.transform = "translateY(-20px)";
+      item.style.transition = "all 0.6s ease-out";
+
       setTimeout(() => {
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-      }, 200 + (index * 100));
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+      }, 200 + index * 100);
     });
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Speakers', href: '/speakers' },
-    { name: 'Venue', href: '/venue' },
-    { name: 'Tickets', href: '/tickets' },
-    { name: 'Past Events', href: '/past-events' },
-    { name: 'Schedule', href: '/schedule' }
+    { name: "Home", href: "/" },
+    { name: "Speakers", href: "/speakers" },
+    { name: "Venue", href: "/venue" },
+    { name: "Tickets", href: "/tickets" },
+    { name: "Past Events", href: "/past-events" },
+    { name: "Schedule", href: "/schedule" }
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md border-b border-green-500/20 shadow-lg' : 'bg-white/80 backdrop-blur-sm'
-    }`}>
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-green-500/20 shadow-lg"
+          : "bg-white/80 backdrop-blur-sm"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo */}
-          <div className="nav-item">
-            <a href="/" className="text-xl md:text-2xl font-bold gradient-text">
-              OS<span className="text-green-600">D</span>2025
+          {/* Logo with icon */}
+          <div className="nav-item flex items-center">
+            <a href="/" className="flex items-center">
+              <img
+                src="/icons/OSDLogo.svg"
+                alt="OSW Logo"
+                className="w-8 h-8 mr-2"
+              />
+              <span className="text-xl md:text-2xl font-bold gradient-text">
+                OS<span className="text-green-600">D</span>2025
+              </span>
             </a>
           </div>
 
@@ -82,11 +93,26 @@ const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-black hover:text-green-600 transition-colors"
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
