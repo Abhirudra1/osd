@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NAVIGATION, BRANDING, SITE } from "../config.ts";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,15 +29,6 @@ const Navigation = () => {
     });
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Speakers", href: "/speakers" },
-    { name: "Venue", href: "/venue" },
-    { name: "Tickets", href: "/tickets" },
-    { name: "Past Events", href: "/past-events" },
-    { name: "Schedule", href: "/schedule" }
-  ];
-
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -47,23 +39,22 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo with icon */}
           <div className="nav-item flex items-center">
             <a href="/" className="flex items-center">
               <img
-                src="/icons/OSDLogo.svg"
+                src={BRANDING.logos.main}
                 alt="OSW Logo"
                 className="w-8 h-8 mr-2"
               />
               <span className="text-xl md:text-2xl font-bold gradient-text">
-                OS<span className="text-green-600">D</span>2025
+                {SITE.shortTitle}
               </span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
+            {NAVIGATION.items.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -75,15 +66,14 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:block nav-item">
             <a
-              href="https://konfhub.com/open-source-day-2025"
+              href={NAVIGATION.cta.url}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-400 text-white px-4 lg:px-6 py-2 rounded-full font-semibold transition-all duration-200 glow-effect hover:scale-105 text-sm lg:text-base"
             >
-              Register Now
+              {NAVIGATION.cta.text}
             </a>
           </div>
 

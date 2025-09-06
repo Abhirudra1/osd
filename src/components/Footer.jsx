@@ -1,3 +1,5 @@
+import { FOOTER, BRANDING, SITE, SOCIAL_LINKS, CONTACT } from "../config.ts";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -10,23 +12,21 @@ const Footer = () => {
             <div className="mb-6">
               <div className="flex items-center mb-4">
                 <img
-                  src="/icons/OSDLogo.svg"
+                  src={BRANDING.logos.main}
                   alt="OSW Logo"
                   className="w-12 h-12 mr-3"
                 />
                 <h3 className="text-3xl font-bold gradient-text">
-                  OS<span className="text-green-600">D</span>2025
+                  {SITE.shortTitle}
                 </h3>
               </div>
-              <p className="text-black max-w-md">
-                Open Source Day 2025 - A community-driven event celebrating open
-                source innovation. Join developers, maintainers, and enthusiasts
-                for learning and collaboration.
-              </p>
+              <p className="text-black max-w-md">{FOOTER.description}</p>
             </div>
             <div className="flex space-x-4">
               <a
-                href="https://www.facebook.com/OSWeekend"
+                href={SOCIAL_LINKS.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-200 text-black-600"
                 aria-label="Facebook"
               >
@@ -39,7 +39,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://twitter.com/OSWeekend"
+                href={SOCIAL_LINKS.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-200 text-black-600"
                 aria-label="Twitter"
               >
@@ -52,7 +54,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://instagram.com/OSWeekend"
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-200 text-black-600"
                 aria-label="Instagram"
               >
@@ -66,7 +70,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/open-source-weekend/"
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-200 text-black-600"
                 aria-label="LinkedIn"
               >
@@ -79,7 +85,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://medium.com/@opensourceweekend"
+                href={SOCIAL_LINKS.medium}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-200 text-black-600"
                 aria-label="Medium"
               >
@@ -97,76 +105,48 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold text-black mb-4">
-              Quick Links
+              {FOOTER.quickLinks.title}
             </h4>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="/speakers"
-                  className="text-black hover:text-green-600 transition-colors"
-                >
-                  Speakers
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/schedule"
-                  className="text-black hover:text-green-600 transition-colors"
-                >
-                  Schedule
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/venue"
-                  className="text-black hover:text-green-600 transition-colors"
-                >
-                  Venue
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/tickets"
-                  className="text-black hover:text-green-600 transition-colors"
-                >
-                  Tickets
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/past-events"
-                  className="text-black hover:text-green-600 transition-colors"
-                >
-                  Past Events
-                </a>
-              </li>
+              {FOOTER.quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-black hover:text-green-600 transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4">Contact</h4>
+            <h4 className="text-lg font-semibold text-black mb-4">
+              {CONTACT.title}
+            </h4>
             <ul className="space-y-2 text-black">
               <li>
                 <a
-                  href="mailto:info@opensourceweekend.com"
+                  href={`mailto:${CONTACT.email}`}
                   className="hover:text-green-600 transition-colors"
                 >
-                  info@opensourceweekend.com
+                  {CONTACT.email}
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+1-555-0123"
+                  href={`tel:${CONTACT.phone}`}
                   className="hover:text-green-600 transition-colors"
                 >
-                  +91 123456789
+                  {CONTACT.phone}
                 </a>
               </li>
               <li className="text-sm">
-                Venue TBA
+                {CONTACT.address.venue}
                 <br />
-                Ahmedabad
+                {CONTACT.address.city}
               </li>
             </ul>
           </div>
@@ -175,27 +155,18 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-black text-sm mb-4 md:mb-0">
-            © {currentYear} OpenSource Weekend. All rights reserved.
+            © {currentYear} {FOOTER.copyright.text}
           </p>
           <div className="flex space-x-6 text-sm">
-            <a
-              href="/privacy"
-              className="text-black hover:text-green-600 transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="/terms"
-              className="text-black hover:text-green-600 transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="/code-of-conduct"
-              className="text-black hover:text-green-600 transition-colors"
-            >
-              Code of Conduct
-            </a>
+            {FOOTER.legal.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="text-black hover:text-green-600 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
