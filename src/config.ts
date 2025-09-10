@@ -31,6 +31,60 @@ import RuchitPatel from "@/assets/speakers/RuchitPatel.png";
 import SantoshViswanatham from "@/assets/speakers/SantoshViswanatham.png";
 // import DishantMakwana from "@/assets/speakers/DishantMakwana.png";
 
+// Past Events Images Imports
+import OSWMay_1 from "@/assets/PastEvents/OSW-may/Image_20250504_135007_012.webp";
+import OSWMay_2 from "@/assets/PastEvents/OSW-may/Image_20250504_135007_119 (1).webp";
+import OSWMay_3 from "@/assets/PastEvents/OSW-may/Image_20250504_135007_299.webp";
+import OSWMay_4 from "@/assets/PastEvents/OSW-may/Image_20250504_135008_924 (1).webp";
+import OSWMay_5 from "@/assets/PastEvents/OSW-may/Image_20250504_135032_445.webp";
+import OSWMay_6 from "@/assets/PastEvents/OSW-may/Image_20250504_135033_071.webp";
+import OSWMay_7 from "@/assets/PastEvents/OSW-may/IMG_20250504_101248.webp";
+import OSWMay_8 from "@/assets/PastEvents/OSW-may/IMG_20250504_115928.webp";
+import OSWMay_9 from "@/assets/PastEvents/OSW-may/IMG_7570.webp";
+
+import OSWApril_1 from "@/assets/PastEvents/OSW-april/20250405_114037.webp";
+import OSWApril_2 from "@/assets/PastEvents/OSW-april/20250405_123827.webp";
+import OSWApril_3 from "@/assets/PastEvents/OSW-april/20250405_140515.webp";
+import OSWApril_4 from "@/assets/PastEvents/OSW-april/20250405_142305.webp";
+
+import OSW24_1 from "@/assets/PastEvents/OSW-24/20241013_094101.webp";
+import OSW24_2 from "@/assets/PastEvents/OSW-24/20241013_094102.webp";
+import OSW24_3 from "@/assets/PastEvents/OSW-24/20241013_094249.webp";
+import OSW24_4 from "@/assets/PastEvents/OSW-24/20241013_102037.webp";
+import OSW24_5 from "@/assets/PastEvents/OSW-24/20241013_102246.webp";
+import OSW24_6 from "@/assets/PastEvents/OSW-24/20241013_102830.webp";
+import OSW24_7 from "@/assets/PastEvents/OSW-24/20241013_103742.webp";
+import OSW24_8 from "@/assets/PastEvents/OSW-24/20241013_104148.webp";
+import OSW24_9 from "@/assets/PastEvents/OSW-24/20241013_104753.webp";
+import OSW24_10 from "@/assets/PastEvents/OSW-24/20241013_111739.webp";
+import OSW24_11 from "@/assets/PastEvents/OSW-24/20241013_112335.webp";
+import OSW24_12 from "@/assets/PastEvents/OSW-24/20241013_113256.webp";
+import OSW24_13 from "@/assets/PastEvents/OSW-24/20241013_114008.webp";
+import OSW24_14 from "@/assets/PastEvents/OSW-24/20241013_124553.webp";
+import OSW24_15 from "@/assets/PastEvents/OSW-24/20241013_131111.webp";
+
+import OSWJune23_1 from "@/assets/PastEvents/OSW-june-23/IMG20230625102644.webp";
+import OSWJune23_2 from "@/assets/PastEvents/OSW-june-23/IMG20230625121634.webp";
+import OSWJune23_3 from "@/assets/PastEvents/OSW-june-23/IMG20230625121639.webp";
+import OSWJune23_4 from "@/assets/PastEvents/OSW-june-23/IMG_7994.webp";
+import OSWJune23_5 from "@/assets/PastEvents/OSW-june-23/IMG_7995.webp";
+import OSWJune23_6 from "@/assets/PastEvents/OSW-june-23/IMG_8006.webp";
+import OSWJune23_7 from "@/assets/PastEvents/OSW-june-23/IMG_8018.webp";
+import OSWJune23_8 from "@/assets/PastEvents/OSW-june-23/IMG_8024.webp";
+import OSWJune23_9 from "@/assets/PastEvents/OSW-june-23/IMG_8033.webp";
+import OSWJune23_10 from "@/assets/PastEvents/OSW-june-23/IMG_8038.webp";
+
+import OSW23_1 from "@/assets/PastEvents/OSW-23/IMG_0759.webp";
+import OSW23_2 from "@/assets/PastEvents/OSW-23/IMG_0761.webp";
+import OSW23_3 from "@/assets/PastEvents/OSW-23/IMG_0767.webp";
+import OSW23_4 from "@/assets/PastEvents/OSW-23/IMG_0782.webp";
+import OSW23_5 from "@/assets/PastEvents/OSW-23/IMG_0787.webp";
+import OSW23_6 from "@/assets/PastEvents/OSW-23/IMG_0790.webp";
+import OSW23_7 from "@/assets/PastEvents/OSW-23/IMG_0803.webp";
+import OSW23_8 from "@/assets/PastEvents/OSW-23/IMG_0804.webp";
+import OSW23_9 from "@/assets/PastEvents/OSW-23/IMG_0806.webp";
+import OSW23_10 from "@/assets/PastEvents/OSW-23/IMG_0824.webp";
+
 export const SITE = {
   title: "OpenSourceDay 2025",
   shortTitle: "OSD2025",
@@ -551,7 +605,6 @@ export const TICKETS = [
   },
 ];
 
-
 export const VENUE = {
   name: "Ahmedabad",
   address: "Ahmedabad, Gujarat, India",
@@ -900,79 +953,35 @@ export const PastEvent = [
         year: "2025",
         title: "Open Source Weekend - Product Collective - May 2025",
         images: [
-            "src/assets//PastEvents/OSW-may/Image_20250504_135007_012.webp",
-            "src/assets//PastEvents/OSW-may/Image_20250504_135007_119 (1).webp",
-            "src/assets//PastEvents/OSW-may/Image_20250504_135007_299.webp",
-            "src/assets//PastEvents/OSW-may/Image_20250504_135008_924 (1).webp",
-            "src/assets//PastEvents/OSW-may/Image_20250504_135032_445.webp",
-            "src/assets//PastEvents/OSW-may/Image_20250504_135033_071.webp",
-            "src/assets//PastEvents/OSW-may/IMG_20250504_101248.webp",
-            "src/assets//PastEvents/OSW-may/IMG_20250504_115928.webp",
-            "src/assets//PastEvents/OSW-may/IMG_7570.webp",
+            OSWMay_1, OSWMay_2, OSWMay_3, OSWMay_4, OSWMay_5, OSWMay_6, OSWMay_7, OSWMay_8, OSWMay_9
         ],
     },
     {
         year: "2025",
         title: "OSW-Product Collective - April 2025",
         images: [
-            "src/assets/PastEvents/OSW-april/20250405_114037.webp",
-            "src/assets/PastEvents/OSW-april//20250405_142305.webp",
-            "src/assets/PastEvents/OSW-april/20250405_123827.webp",
-            "src/assets/PastEvents/OSW-april//20250405_140515.webp",
+            OSWApril_1, OSWApril_2, OSWApril_3, OSWApril_4
         ],
     },
     {
         year: "2024",
         title: "OSW-Day X Hacktoberfest 2024",
         images: [
-            "src/assets/PastEvents/OSW-24/",
-            "src/assets/PastEvents/OSW-24/20241013_094101.webp",
-            "src/assets/PastEvents/OSW-24/20241013_094102.webp",
-            "src/assets/PastEvents/OSW-24/20241013_094249.webp",
-            "src/assets/PastEvents/OSW-24/20241013_102037.webp",
-            "src/assets/PastEvents/OSW-24/20241013_102246.webp",
-            "src/assets/PastEvents/OSW-24/20241013_102830.webp",
-            "src/assets/PastEvents/OSW-24/20241013_103742.webp",
-            "src/assets/PastEvents/OSW-24/20241013_104148.webp",
-            "src/assets/PastEvents/OSW-24/20241013_104753.webp",
-            "src/assets/PastEvents/OSW-24/20241013_111739.webp",
-            "src/assets/PastEvents/OSW-24/20241013_112335.webp",
-            "src/assets/PastEvents/OSW-24/20241013_113256.webp",
-            "src/assets/PastEvents/OSW-24/20241013_114008.webp",
-            "src/assets/PastEvents/OSW-24/20241013_124553.webp",
-            "src/assets/PastEvents/OSW-24/20241013_131111.webp",
+            OSW24_1, OSW24_2, OSW24_3, OSW24_4, OSW24_5, OSW24_6, OSW24_7, OSW24_8, OSW24_9, OSW24_10, OSW24_11, OSW24_12, OSW24_13, OSW24_14, OSW24_15
         ],
     },
     {
         year: "2023",
         title: "OSW-June 2023",
         images: [
-            "src/assets/PastEvents/OSW-june-23/IMG20230625102644.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG20230625121634.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG20230625121639.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_7994.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_7995.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_8006.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_8018.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_8024.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_8033.webp",
-            "src/assets/PastEvents/OSW-june-23/IMG_8038.webp",
+            OSWJune23_1, OSWJune23_2, OSWJune23_3, OSWJune23_4, OSWJune23_5, OSWJune23_6, OSWJune23_7, OSWJune23_8, OSWJune23_9, OSWJune23_10
         ],
     },
     {
         year: "2023",
         title: "OSW-Day 2023",
         images: [
-            "src/assets/PastEvents/OSW-23/IMG_0759.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0761.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0767.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0782.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0787.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0790.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0803.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0804.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0806.webp",
-            "src/assets/PastEvents/OSW-23/IMG_0824.webp",
+            OSW23_1, OSW23_2, OSW23_3, OSW23_4, OSW23_5, OSW23_6, OSW23_7, OSW23_8, OSW23_9, OSW23_10
         ],
     },
 ];
