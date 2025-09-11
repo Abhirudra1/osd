@@ -9,6 +9,7 @@ The project is a simple static website for OpenSourceDay 2025.
 2. Styling is done via Tailwind.
 
 **_Current focus is DATA ACCURACY_**
+
 We are simultaneously improving the accuracy of data (removing mock data) and improving styling of the website.
 
 ## Workflow
