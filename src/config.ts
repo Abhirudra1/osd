@@ -641,7 +641,7 @@ export const FOOTER = {
     { name: "Terms of Service", href: "/terms" },
     { name: "Code of Conduct", href: "/code-of-conduct" }
   ],
-  copyright: "© {year} OpenSource Weekend. All rights reserved.",
+  copyright: "© 2025 OpenSource Weekend. All rights reserved.",
   credits: "Made with ❤️ by the OSW community"
 };
 
