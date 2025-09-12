@@ -262,7 +262,7 @@ export const SOCIAL_LINKS = {
 export const CONTACT = {
   title: "Contact Us",
   email: "opensourceweekend@gmail.com ",
-  phone: "+91 8980808222, +91 8401339936",
+  phone: ["+91 8980808222", "+91 8401339936"],
   address: {
     venue: "VENUE - TBA",
     city: "Ahmedabad",

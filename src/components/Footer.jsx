@@ -134,14 +134,28 @@ const Footer = () => {
                   {CONTACT.email}
                 </a>
               </li>
-              <li>
-                <a
-                  href={`tel:${CONTACT.phone}`}
-                  className="hover:text-green-600 transition-colors"
-                >
-                  {CONTACT.phone}
-                </a>
-              </li>
+              {/* Render each phone number as a separate link */}
+              {Array.isArray(CONTACT.phone)
+                ? CONTACT.phone.map((phone, idx) => (
+                    <li key={idx}>
+                      <a
+                        href={`tel:${phone.replace(/\s+/g, "")}`}
+                        className="hover:text-green-600 transition-colors"
+                      >
+                        {phone}
+                      </a>
+                    </li>
+                  ))
+                : (
+                  <li>
+                    <a
+                      href={`tel:${CONTACT.phone.replace(/\s+/g, "")}`}
+                      className="hover:text-green-600 transition-colors"
+                    >
+                      {CONTACT.phone}
+                    </a>
+                  </li>
+                )}
               <li className="text-sm">
                 {CONTACT.address.venue}
                 <br />
