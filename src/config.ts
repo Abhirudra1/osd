@@ -12,7 +12,7 @@ import FalgunBhalsod from "@/assets/team/FalgunBhalsod.webp";
 import DhavalDesai from "@/assets/team/DhavalDesai.webp";
 import RinkeshBansal from "@/assets/team/RinkeshBansal.webp";
 import AshishTiwari from "@/assets/team/AshishTiwari.webp";
-// import SurajNath from "@/assets/team/SurajNath.webp";
+import SurajNath from "@/assets/team/SurajNath.webp";
 import MehulPatel from "@/assets/team/MehulPatel.webp";
 import HarshManvar from "@/assets/team/HarshManvar.webp";
 import NiravShah from "@/assets/team/NiravShah.webp";
@@ -207,7 +207,6 @@ export const BRANDING = {
     white: "/icons/OSWWhite.svg",
     black: "/icons/OSWBlack.svg",
     green: OSDGreen,
-
   },
   colors: {
     primary: "#22c55e",
@@ -850,13 +849,12 @@ export const TEAM = {
       image: HarshManvar,
     },
 
-    // {
-    //   name: "Suraj Nath",
-    //   roles: ["Sr. Software Engineer at Grafana Labs"],
-    //   linkedin: "https://www.linkedin.com/in/electron0zero/",
-    //   image: SurajNath,
-    //   hide: true, // Hidden for now
-    // },
+    {
+      name: "Suraj Nath",
+      roles: ["Sr. Software Engineer at Grafana Labs"],
+      linkedin: "https://www.linkedin.com/in/electron0zero/",
+      image: SurajNath,
+    },
     // {
     //   name: "Kalyan Prasad",
     //   roles: ["Advisor, Kaggle", "Organizer, PyCon India"],
