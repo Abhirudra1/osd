@@ -836,11 +836,6 @@ export const COMMUNITY_PARTNERS = [
     website: "#"
   },
   {
-    name: "FlutterFlow Black",
-    logo: "/partners/FFDGLogo_Black - Parth Gupta.png",
-    website: "#"
-  },
-  {
     name: "FlutterFlow Gandhinagar",
     logo: "/partners/FlutterFlow Gandhinagar.png",
     website: "#"
@@ -853,11 +848,6 @@ export const COMMUNITY_PARTNERS = [
   {
     name: "GDG Cloud Ahmedabad",
     logo: "/partners/GDG Cloud Ahmedabad.png",
-    website: "#"
-  },
-  {
-    name: "GDG Gandhinagar",
-    logo: "/partners/GDG Gandhinagar@4x.png",
     website: "#"
   },
   {
