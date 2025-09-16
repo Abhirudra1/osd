@@ -14,102 +14,91 @@ import { VENUE } from "@/config";
   <!-- Heading Section -->
   <Heading title="The Venue" />
 
-  <!-- Venue Details -->
-  <section class="py-20 px-4 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="space-y-6">
-            <div class="flex items-start space-x-4">
-              <div
-                class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+  <!-- Venue Section -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl flex flex-col md:flex-row overflow-hidden border border-gray-100">
+      <!-- Left: Venue Details -->
+      <div class="md:w-1/2 p-8 flex flex-col justify-center bg-white">
+        <h2 class="text-3xl font-bold text-green-600 mb-6">Venue Details</h2>
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+            <Location />
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-black mb-1">Location</h3>
+            <p class="text-gray-700">
+              Ahmedabad, Gujarat<br />
+              <span class="text-sm text-gray-500"
+                >Exact venue details will be shared with registered participants via
+                email confirmation.</span
               >
-                <Location />
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold text-black mb-2">Location</h3>
-                <p class="text-black">
-                  Ahmedabad, Gujarat<br />
-                  Exact Venue details will be shared<br />
-                  with registered participants<br />
-                  via email confirmation
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-start space-x-4">
-              <div
-                class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
-              >
-                <CalendarClock />
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold text-black mb-2">
-                  Date & Time
-                </h3>
-                <p class="text-black">
-                  October 05, 2025<br />
-                  9:00 AM - 6:00 PM<br />
-                  Full day event
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-start space-x-4">
-              <div
-                class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
-              >
-                <LayoutList />
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold text-black mb-2">
-                  Accessibility
-                </h3>
-                <p class="text-black">
-                  Wheelchair accessible venue<br />
-                  Public transport connectivity<br />
-                  Parking facilities available
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
         </div>
-
-        <div class="light-card rounded-xl p-8">
-          <h3 class="text-2xl font-bold text-black mb-6">Venue Features</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">Main Auditorium (600 seats)</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">5 Workshop Rooms</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">Exhibition Hall</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">Networking Lounge</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">High-Speed WiFi</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">Live Streaming Setup</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">Food Court</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span class="text-black">Accessibility Features</span>
-            </div>
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+            <CalendarClock />
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-black mb-1">Date & Time</h3>
+            <p class="text-gray-700">
+              October 05, 2025<br />
+              9:00 AM - 6:00 PM<br />
+              <span class="text-sm text-gray-500">Full day event</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+            <LayoutList />
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-black mb-1">Accessibility</h3>
+            <ul class="list-disc list-inside text-gray-700 text-base">
+              <li>Wheelchair accessible venue</li>
+              <li>Public transport connectivity</li>
+              <li>Parking facilities available</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Divider -->
+      <div class="hidden md:block w-px bg-gray-100"></div>
+      <!-- Right: Venue Features -->
+      <div class="md:w-1/2 p-8 bg-gray-50 flex flex-col justify-center">
+        <h2 class="text-3xl font-bold text-green-600 mb-6">Venue Features</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">A</span>
+            <span class="text-gray-800">Main Auditorium (600 seats)</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">W</span>
+            <span class="text-gray-800">5 Workshop Rooms</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">E</span>
+            <span class="text-gray-800">Exhibition Hall</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">N</span>
+            <span class="text-gray-800">Networking Lounge</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">W</span>
+            <span class="text-gray-800">High-Speed WiFi</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">L</span>
+            <span class="text-gray-800">Live Streaming Setup</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">F</span>
+            <span class="text-gray-800">Food Court</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">A</span>
+            <span class="text-gray-800">Accessibility Features</span>
           </div>
         </div>
       </div>
@@ -117,13 +106,14 @@ import { VENUE } from "@/config";
   </section>
 
   <!-- Map Section -->
-  <div class="my-10 justify-items-center">
-    <iframe
-      src="https://www.google.com/maps/d/embed?mid=10QGVjTs4XnCMNiFAl8VxStHAgt5BOiQ&hl=en&ehbc=2E312F"
-      class="w-11/12 md:w-3/5 h-[480px] rounded-xl border-0 shadow-md"
-      loading="lazy"
-      allowfullscreen
-    >
-    </iframe>
+  <div class="my-12 flex justify-center">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden w-full max-w-3xl border border-gray-100">
+      <iframe
+        src="https://www.google.com/maps/d/embed?mid=10QGVjTs4XnCMNiFAl8VxStHAgt5BOiQ&hl=en&ehbc=2E312F"
+        class="w-full h-[400px] md:h-[480px] border-0"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
   </div>
 </Layout>
