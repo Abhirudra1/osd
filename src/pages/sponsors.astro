@@ -48,7 +48,7 @@ import { COMMUNITY_PARTNERS, SPONSOR_TIERS } from "@/config.ts";
         <SponsorsGrid
           client:load
           sponsors={COMMUNITY_PARTNERS}
-          columns={6}
+          columns={{ base: 2, md: 4, lg: 6 }}
           maxHeight={140}
         />
       </div>
