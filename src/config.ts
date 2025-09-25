@@ -53,6 +53,7 @@ import AshishPatel from "@/assets/speakers/AshishPatel.jpeg";
 import VarunPandya from "@/assets/speakers/varun_pandya.jpeg";
 import KiranTrivedi from "@/assets/speakers/kiran_trivedi.jpeg";
 import ShreyanMehta from "@/assets/speakers/shreyan_mehta.jpeg";
+import ChetanSoni from "@/assets/speakers/chetan_soni.jpg";
 
 import PersonImg from "@/assets/speakers/PersonImg.webp";
 
@@ -564,8 +565,8 @@ export const CURRENT_SPEAKERS = [
     ],
   },
   {
-    eventName: "2025 Open Source Day",
-    date: "5th Oct",
+    eventName: "Open Source Day",
+    date: "5th Oct 2025",
     sections: [
       {
         title: "OSD Speakers",
@@ -586,6 +587,14 @@ export const CURRENT_SPEAKERS = [
             linkedin: "https://www.linkedin.com/in/varun-pandya-1676a0103/",
             image: VarunPandya,
           },
+          {
+            name: "Chetan Soni",
+            position: "Cloud Head & Solutions Architect",
+            company: "Linearloop",
+            presentationTitle: "External Secret Operator (ESO)",
+            linkedin: "https://www.linkedin.com/in/sonichetan/",
+            image: ChetanSoni,
+          },
         ],
       },
       {
@@ -603,6 +612,19 @@ export const CURRENT_SPEAKERS = [
       },
       {
         title: "Community Panel",
+        speakers: [
+          {
+            name: "TBD",
+            position: "TBD",
+            company: "TBD",
+            presentationTitle: "TBD",
+            linkedin: "https://www.linkedin.com",
+            image: PersonImg,
+          },
+        ],
+      },
+      {
+        title: "Devrooms",
         speakers: [
           {
             name: "TBD",
