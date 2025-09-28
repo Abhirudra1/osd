@@ -476,7 +476,7 @@ export const CONTACTS = [
   },
   {
     name: "Phone",
-    content: "+91 8401 3399 36",
+    content: "+91 84 0133 9936",
     href: "tel:+918401339936",
     icon: Phone,
   },
@@ -770,56 +770,6 @@ export const SPEAKERS: Speaker[] = [
 
 export const TICKETS = [
   {
-    name: "Early Bird Ticket",
-    price: "₹199",
-    originalPrice: null,
-    description:
-      "Tickets include full-access to conference, lunch, keynotes, panels, OSD goodies, and early bird discount.",
-    features: [
-      "Full-access to conference",
-      "Lunch",
-      "Keynotes, Panels",
-      "OSD Goodies",
-      "Early Bird Discount",
-    ],
-    availableTill: "20th Sep 2025, 06:00 PM (GMT+05:30)",
-    popular: false,
-    available: true,
-    fillingFast: true,
-    konfhubUrl:
-      "https://konfhub.com/checkout/open-source-day-2025?ticketId=56932",
-  },
-  {
-    name: "Open Source with AI Workshop + OSD Conference",
-    price: "₹699",
-    originalPrice: null,
-    description:
-      "Use coupon code OSDWSHOP25 and get Flat 30% OFF. Access to hands-on workshop and conference.",
-    features: [
-      "Full-access to conference",
-      "Lunch",
-      "Keynotes, Panels",
-      "OSD Goodies",
-      "1 Day Open Source + AI Workshop",
-      "Beginner to Intermediate level",
-      "Hands-on Workshop",
-      "Make first Open Source Contribution",
-      "Create an AI Agent for your project",
-      "Develop Project and Pitch",
-      "Week long Mentorship",
-      "Solve Open Source Communities Problems",
-      "Workshop Exclusive Goodies",
-      "Digital Certificate",
-    ],
-    availableTill: "26th Sep 2025, 06:00 PM (GMT+05:30)",
-    popular: true,
-    available: true,
-    konfhubUrl:
-      "https://konfhub.com/checkout/open-source-day-2025?ticketId=56933",
-    couponCode: "OSDWSHOP25",
-    discountedPrice: "₹499",
-  },
-  {
     name: "Regular Ticket",
     price: "₹499",
     originalPrice: null,
@@ -833,10 +783,15 @@ export const TICKETS = [
     ],
     startsOn: "20th Sep 2025, 03:45 AM (GMT+05:30)",
     popular: false,
-    availableTill: false,
+    available: true,
+    fillingFast: true,
+    alert: {
+      text: "Filling Fast",
+      classes: "text-white bg-red-500",
+    },
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56800",
-    linkText: "Coming Soon",
+    linkText: "Register Now",
   },
   {
     name: "Open Source Day 25 + Devfest Gandhinagar 25",
@@ -861,6 +816,10 @@ export const TICKETS = [
     availableTill: "20th Sep 2025, 06:00 PM (GMT+05:30)",
     popular: true,
     available: true,
+    alert: {
+      text: "Most Popular",
+      classes: "text-white bg-green-600",
+    },
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56934",
   },
@@ -881,6 +840,10 @@ export const TICKETS = [
     availableTill: "5th Oct 2025, 06:00 PM (GMT+05:30)",
     popular: false,
     available: true,
+    alert: {
+      text: "Most Preferred",
+      classes: "text-white bg-blue-500",
+    },
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56805",
   },
@@ -975,6 +938,58 @@ export const TICKETS = [
     available: false,
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56807",
+    linkText: "Sold Out",
+  },
+  {
+    name: "Early Bird Ticket",
+    price: "₹199",
+    originalPrice: null,
+    description:
+      "Tickets include full-access to conference, lunch, keynotes, panels, OSD goodies, and early bird discount.",
+    features: [
+      "Full-access to conference",
+      "Lunch",
+      "Keynotes, Panels",
+      "OSD Goodies",
+      "Early Bird Discount",
+    ],
+    availableTill: "20th Sep 2025, 06:00 PM (GMT+05:30)",
+    popular: false,
+    available: false,
+    fillingFast: false,
+    konfhubUrl:
+      "https://konfhub.com/checkout/open-source-day-2025?ticketId=56932",
+    linkText: "Sold Out",
+  },
+  {
+    name: "Open Source with AI Workshop + OSD Conference",
+    price: "₹699",
+    originalPrice: null,
+    description:
+      "Use coupon code OSDWSHOP25 and get Flat 30% OFF. Access to hands-on workshop and conference.",
+    features: [
+      "Full-access to conference",
+      "Lunch",
+      "Keynotes, Panels",
+      "OSD Goodies",
+      "1 Day Open Source + AI Workshop",
+      "Beginner to Intermediate level",
+      "Hands-on Workshop",
+      "Make first Open Source Contribution",
+      "Create an AI Agent for your project",
+      "Develop Project and Pitch",
+      "Week long Mentorship",
+      "Solve Open Source Communities Problems",
+      "Workshop Exclusive Goodies",
+      "Digital Certificate",
+    ],
+    availableTill: "26th Sep 2025, 06:00 PM (GMT+05:30)",
+    popular: false,
+    available: false,
+    konfhubUrl:
+      "https://konfhub.com/checkout/open-source-day-2025?ticketId=56933",
+    couponCode: "OSDWSHOP25",
+    discountedPrice: "₹499",
     linkText: "Sold Out",
   },
 ];

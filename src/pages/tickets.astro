@@ -9,14 +9,11 @@ import { TICKETS, CONTACT } from "@/config.ts";
 
 <Layout title="Tickets — 2025 OSD" activePath="/tickets">
   <!-- Heading Section -->
-  <Heading
-    title="Get Your Tickets"
-    description="Choose the perfect ticket for your needs. All tickets include access to sessions, workshops, and networking opportunities."
-  />
+  <Heading title="Get Your Tickets" description="" />
 
   <!-- Pricing Cards -->
 
-  <section class="py-20 px-4 bg-white">
+  <section class="py-5 px-4 bg-white">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {
@@ -24,20 +21,18 @@ import { TICKETS, CONTACT } from "@/config.ts";
             <div
               class={`relative light-card rounded-xl p-8 transition-all duration-300 hover:scale-102 flex flex-col justify-between items-center ${
                 ticket.popular
-                  ? "border-green-500 ring-2 ring-green-500/20"
+                  ? "border-green-500 ring-2 ring-green-500/20 shadow-green-200 shadow-2xl"
                   : "hover:border-green-500/40"
               }`}
             >
-              {(ticket.popular || ticket.fillingFast) && (
+              {ticket.alert && (
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span
                     class={`px-4 py-2 rounded-full text-sm font-bold ${
-                      ticket.popular
-                        ? "bg-green-500 text-black"
-                        : "bg-red-500  text-white"
+                      ticket.alert.classes
                     }`}
                   >
-                    {ticket.popular ? "Most Popular" : "Filling Fast"}
+                    {ticket.alert.text || "Most Popular"}
                   </span>
                 </div>
               )}
@@ -154,25 +149,4 @@ import { TICKETS, CONTACT } from "@/config.ts";
       <CountdownTimer client:load />
     </div>
   </div>
-
-  <!-- Registration CTA -->
-  <section class="py-15 mb-5 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-black mb-6">Ready to Register?</h2>
-      <p class="text-xl text-black-300 mb-8">
-        Secure your spot at OpenSource Weekend 2025. Limited seats available!
-      </p>
-      <a
-        href="https://konfhub.com/open-source-day-2025"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-green-500 hover:bg-green-400 text-black px-12 py-4 rounded-full font-bold text-xl transition-all duration-200 glow-effect hover:scale-105 transform"
-      >
-        Register on KonfHub
-      </a>
-      <p class="text-sm text-black-400 mt-4">
-        Secure payment processing • Instant confirmation • Digital tickets
-      </p>
-    </div>
-  </section>
 </Layout>
