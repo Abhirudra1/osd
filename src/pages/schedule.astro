@@ -37,135 +37,13 @@ const getTypeColor = (type: string) => {
   <Heading
     title="Event Schedule"
     description="A full day packed with inspiring talks, hands-on workshops, networking opportunities, and celebrating open source innovation."
-    date="October 5th, 2025"
-    variant="schedule"
   />
 
-  <!-- Legend -->
-  <section class="py-10 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="light-card rounded-xl p-6">
-        <h3 class="text-xl font-bold text-black mb-4">Session Types</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4">
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-teal-500/20 border border-teal-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Registration</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-indigo-500/20 border border-indigo-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Activity</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-lime-500/20 border border-lime-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Opening</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-green-500/20 border border-green-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Keynote</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-blue-500/20 border border-blue-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Talk</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-orange-500/20 border border-orange-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Panel</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-gray-500/20 border border-gray-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Break</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div class="w-4 h-4 rounded bg-red-500/20 border border-red-500/40">
-            </div>
-            <span class="text-sm text-black">Closing</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-4 h-4 rounded bg-pink-500/20 border border-pink-500/40"
-            >
-            </div>
-            <span class="text-sm text-black">Social</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Schedule Section -->
-
   <section class="w-full flex flex-col gap-5 justify-center">
-    <!-- Day 1 Schedule -->
-    <!-- Workshop Schedule -->
-    <section id="workshop" class="py-20 px-4 bg-white w-full">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold text-center text-black mb-12">
-          <span class="gradient-text">Open Source with AI</span>
-          <span class="text-lg block text-green-500"
-            >Workshop at Aubergine (27th September 2025)</span
-          >
-        </h2>
-        <div class="space-y-4">
-          {
-            workshopSchedule.map((session) => (
-              <div class="light-card rounded-xl p-6 transition-all duration-300">
-                <div class="flex flex-col gap-5 md:flex-row md:items-center justify-between">
-                  <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-2">
-                      <span class="text-green-600 font-bold text-lg min-w-[80px]">
-                        {session.time}
-                      </span>
-                      <span
-                        class={`px-3 py-1 rounded-full text-xs font-semibold border ${getTypeColor(session.type)}`}
-                      >
-                        {session.type.charAt(0).toUpperCase() +
-                          session.type.slice(1)}
-                      </span>
-                    </div>
-                    <h3 class="text-xl font-bold text-black mb-1">
-                      {session.title}
-                    </h3>
-                    {session.speaker && (
-                      <p class="text-black mb-2">by {session.speaker}</p>
-                    )}
-                    <p class="text-sm text-gray-600">{session.room}</p>
-                  </div>
-                  <div class="border-2 border-green-500 text-center text-green-600 hover:bg-green-500 hover:text-white px-4 py-2 rounded-full font-bold transition-all duration-200 hover:scale-105 transform">
-                    <AddToGoogleCalendar event={session} client:load />
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <!-- Day 2 Schedule -->
+    <!-- OSD Schedule -->
     <section
       id="day2"
-      class="py-20 px-4 w-full bg-gradient-to-r from-green-50 to-green-100"
+      class="py-20 px-4 w-full bg-gradient-to-t to-green-50 from-green-300"
     >
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl font-bold text-center text-black mb-12">
@@ -211,6 +89,51 @@ const getTypeColor = (type: string) => {
         </div>
       </div>
     </section>
+  </section>
+
+  <!-- Workshop Schedule -->
+  <section id="workshop" class="py-20 px-4 bg-white w-full">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center text-black mb-12">
+        <span class="gradient-text">Open Source with AI</span>
+        <span class="text-lg block text-green-500"
+          >Workshop at Aubergine (27th September 2025)</span
+        >
+      </h2>
+      <div class="space-y-4">
+        {
+          workshopSchedule.map((session) => (
+            <div class="light-card rounded-xl p-6 transition-all duration-300">
+              <div class="flex flex-col gap-5 md:flex-row md:items-center justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center space-x-4 mb-2">
+                    <span class="text-green-600 font-bold text-lg min-w-[80px]">
+                      {session.time}
+                    </span>
+                    <span
+                      class={`px-3 py-1 rounded-full text-xs font-semibold border ${getTypeColor(session.type)}`}
+                    >
+                      {session.type.charAt(0).toUpperCase() +
+                        session.type.slice(1)}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-black mb-1">
+                    {session.title}
+                  </h3>
+                  {session.speaker && (
+                    <p class="text-black mb-2">by {session.speaker}</p>
+                  )}
+                  <p class="text-sm text-gray-600">{session.room}</p>
+                </div>
+                <div class="border-2 border-green-500 text-center text-green-600 hover:bg-green-500 hover:text-white px-4 py-2 rounded-full font-bold transition-all duration-200 hover:scale-105 transform">
+                  <AddToGoogleCalendar event={session} client:load />
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </section>
 
   <!-- Download Schedule -->
