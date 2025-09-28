@@ -603,7 +603,8 @@ export const CURRENT_SPEAKERS = [
             name: "Chetan Soni",
             position: "Cloud Head & Solutions Architect",
             company: "Linearloop",
-            presentationTitle: "External Secret Operator (ESO)",
+            presentationTitle:
+              "Building Secure Foundations: An Open-Source Approach to Kubernetes Secrets",
             linkedin: "https://www.linkedin.com/in/sonichetan/",
             image: ChetanSoni,
           },
