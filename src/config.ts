@@ -74,6 +74,7 @@ import NiravGohil from "@/assets/speakers/NiravGohil.jpg";
 import ChinmayShah from "@/assets/speakers/ChinmayShah.jpeg";
 import ChetanSheladiya from "@/assets/speakers/ChetanSheladiya.png";
 import BhavikaPatel from "@/assets/speakers/BhavikaPatel.png";
+import ParthPandya from "@/assets/speakers/ParthPandya.png";
 
 import PersonImg from "@/assets/speakers/PersonImg.webp";
 
@@ -572,10 +573,20 @@ export const CURRENT_SPEAKERS = [
         segment: "",
         speakers: [
           {
+            name: "Parth Pandya",
+            position: "Founder & CEO",
+            company: "KrishaWeb",
+            event: "Keynote",
+            presentationTitle:
+              "The Future of Open Source: Trends, Opportunities, and Emerging Technologies",
+            link: "https://www.linkedin.com/in/parthjpandya/",
+            image: ParthPandya,
+          },
+          {
             name: "Kiran Trivedi",
             position: "Professor",
             company: "University of Wollongong Australia: India Campus",
-            event: "Talk",
+            event: "Open Source Hardware",
             presentationTitle: "Open source hardware for Tiny ML",
             link: "https://www.linkedin.com/in/krtrivedi",
             image: KiranTrivedi,
@@ -584,8 +595,8 @@ export const CURRENT_SPEAKERS = [
             name: "Varun Pandya",
             position: "Chief Technology Officer",
             company: "Weam",
-            event: "Talk",
-            presentationTitle: "Open source & AI",
+            event: "Open Source with AI",
+            presentationTitle: "Open Source & AI",
             link: "https://www.linkedin.com/in/varun-pandya-1676a0103/",
             image: VarunPandya,
           },
@@ -593,7 +604,7 @@ export const CURRENT_SPEAKERS = [
             name: "Chetan Soni",
             position: "Cloud Head & Solutions Architect",
             company: "Linearloop",
-            event: "Talk",
+            event: "Open Source Security",
             presentationTitle:
               "Building Secure Foundations: An Open-Source Approach to Kubernetes Secrets",
             link: "https://www.linkedin.com/in/sonichetan/",
@@ -603,7 +614,7 @@ export const CURRENT_SPEAKERS = [
             name: "Someshwaran Mohan Kumar",
             position: "Developer Advocate",
             company: "Elastic India",
-            event: "Talk",
+            event: "Open Data",
 
             presentationTitle:
               "From Guesswork to Flamegraphs: eBPF Profiling with DevFiler",
@@ -614,7 +625,7 @@ export const CURRENT_SPEAKERS = [
             name: "Ansh Arora",
             position: "Program and Partnerships Manager",
             company: "FOSS United",
-            event: "Talk",
+            event: "Open Source Community",
             presentationTitle:
               "Significance of Open Source Projects and its sustainability",
             link: "https://www.linkedin.com/in/ansharora28/",

@@ -60,13 +60,13 @@ const {
         (event || presentationTitle) && (
           <dl class="pb-4 px-4 ">
             {event && (
-              <dt class="text-xs font-medium shadow-gray-600 drop-shadow-xl rounded-t-xl bg-green-200 px-2 py-1 border-x-2 border-t-2 inline-block text-gray-800">
-                {event}
+              <dt class="text-[0.7rem] font-bold shadow-gray-800 drop-shadow-xl rounded-t-xl bg-green-200 px-2 py-1 border-x-2 border-t-2 inline-block text-gray-800">
+                {event.toUpperCase()}
               </dt>
             )}
             <br />
             {presentationTitle && (
-              <dd class="text-sm drop-shadow-xl shadow-gray-600 font-medium text-gray-800 inline-block min-w-full min-h-full rounded-b-xl rounded-tr-xl border-2  px-2 py-1 bg-green-300">
+              <dd class="text-[0.95rem] drop-shadow-xl shadow-gray-600 font-medium text-gray-800 inline-block min-w-full min-h-full rounded-b-xl rounded-tr-xl border-2  px-2 py-1 bg-green-300">
                 {presentationTitle}
               </dd>
             )}
