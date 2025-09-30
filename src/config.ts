@@ -70,6 +70,10 @@ import ChetanSoni from "@/assets/speakers/chetan_soni.jpg";
 import Someshwaran from "@/assets/speakers/someshwaran.png";
 import AnshArora from "@/assets/speakers/AnshArora.jpeg";
 import PratikBhatt from "@/assets/speakers/PratikBhatt.jpg";
+import NiravGohil from "@/assets/speakers/NiravGohil.jpg";
+import ChinmayShah from "@/assets/speakers/ChinmayShah.jpeg";
+import ChetanSheladiya from "@/assets/speakers/ChetanSheladiya.png";
+import BhavikaPatel from "@/assets/speakers/BhavikaPatel.png";
 
 import PersonImg from "@/assets/speakers/PersonImg.webp";
 
@@ -564,7 +568,8 @@ export const CURRENT_SPEAKERS = [
     venue: "Silver Oak University",
     sections: [
       {
-        title: "OSD Speakers",
+        title: "",
+        segment: "",
         speakers: [
           {
             name: "Kiran Trivedi",
@@ -618,20 +623,49 @@ export const CURRENT_SPEAKERS = [
         ],
       },
       {
-        title: "CXO panel",
+        title:
+          "The Role of Open Source in Driving Innovation and Collaboration",
+        segment: "CxO Panel",
         speakers: [
           {
-            name: "TBD",
-            position: "TBD",
-            company: "TBD",
-            presentationTitle: "TBD",
-            link: "https://www.linkedin.com",
-            image: PersonImg,
+            name: "Nirav Gohil",
+            position: "CEO",
+            company: "Tecmantras Solutions",
+            presentationTitle: "",
+            link: "https://www.linkedin.com/in/nirav-gohil-tecmantras/",
+            image: NiravGohil,
+          },
+          {
+            name: "Chetan Sheladiya",
+            position: "Founder & CEO",
+            company:
+              "Metizsoft Solutions Pvt. Ltd.  & Destinova AI Labs Pvt. Ltd.",
+            presentationTitle: "",
+            link: "https://www.linkedin.com/in/sheladiya-chetan/",
+            image: ChetanSheladiya,
+          },
+          {
+            name: "Bhavika Patel",
+            position: "Co-founder",
+            company: "HK Infosoft",
+            presentationTitle: "",
+            link: "https://www.linkedin.com/in/bhavika-hkinfosoft/",
+            image: BhavikaPatel,
+          },
+          {
+            name: "Chinmay Shah",
+            position: "Director",
+            company: "Crescent Electronics Pvt. Ltd.",
+            presentationTitle: "",
+            link: "https://www.linkedin.com/in/chinmayushah/",
+            image: ChinmayShah,
           },
         ],
       },
       {
-        title: "Community Panel",
+        title:
+          "Building a Successful Open Source Community: Best Practices and Lessons Learned",
+        segment: "Community Panel",
         speakers: [
           {
             name: "Pratik Bhatt",
@@ -645,7 +679,9 @@ export const CURRENT_SPEAKERS = [
         ],
       },
       {
-        title: "Devrooms",
+        title:
+          "Specialized mini-conference tracks that run parallel to the main conference",
+        segment: "Devrooms",
         speakers: [
           {
             name: "TBD",
