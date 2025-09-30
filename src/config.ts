@@ -1514,6 +1514,12 @@ export const COMMUNITY_PARTNERS = [
     logo: "/partners/FOSS_United.png",
     website: "#",
   },
+  {
+    id: 64,
+    name: "GDG Mumbai",
+    logo: "/partners/gdg_mumbai.png",
+    website: "#",
+  },
 ];
 
 // Simple tier grouping for display on Home and Sponsors page.
