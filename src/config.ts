@@ -1658,7 +1658,13 @@ export const COMMUNITY_PARTNERS = [
   {
     id: 66,
     name: "Wordpress Rajkot",
-    logo: "/partners/aws_cloud_club_sou.png",
+    logo: "/partners/wordpress_rajkot.png",
+    website: "#",
+  },
+  {
+    id: 67,
+    name: "Laravel Ahmedabad",
+    logo: "/partners/laravel_ahmedabad.png",
     website: "#",
   },
 ];
