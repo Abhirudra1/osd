@@ -4,7 +4,7 @@ import Heading from "@components/Heading.astro";
 import CountdownTimer from "@components/CountdownTimer.jsx";
 import "@/styles/global.css";
 
-import { TICKETS, CONTACT, eventEnded } from "@/config.ts";
+import { TICKETS, eventEnded } from "@/config.ts";
 ---
 
 <Layout title="Tickets — 2025 OSD" activePath="/tickets">
@@ -110,7 +110,7 @@ import { TICKETS, CONTACT, eventEnded } from "@/config.ts";
                       : "border-2 border-green-500 text-green-400 pointer-events-none opacity-60 cursor-not-allowed"
                   }`}
                   aria-disabled="true"
-                  tabIndex={-1}
+                  tabindex={-1}
                   disabled
                   type="button"
                 >
