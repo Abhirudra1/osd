@@ -1111,6 +1111,8 @@ export const SPEAKERS: Speaker[] = [
   },
 ];
 
+export const eventEnded = true;
+
 export const TICKETS = [
   {
     name: "Regular Ticket",
@@ -1128,7 +1130,7 @@ export const TICKETS = [
     ],
     startsOn: "20th Sep 2025, 03:45AM (GMT+05:30)",
     popular: false,
-    available: true,
+    available: false,
     fillingFast: true,
     alert: {
       text: "Filling Fast",
@@ -1160,7 +1162,7 @@ export const TICKETS = [
     ],
     availableTill: "20th Sep 2025, 06:00 PM (GMT+05:30)",
     popular: true,
-    available: true,
+    available: false,
     alert: {
       text: "Most Popular",
       classes: "text-white bg-green-600",
@@ -1184,7 +1186,7 @@ export const TICKETS = [
     ],
     availableTill: "5th Oct 2025, 06:00 PM (GMT+05:30)",
     popular: false,
-    available: true,
+    available: false,
     alert: {
       text: "Most Preferred",
       classes: "text-white bg-blue-500",
@@ -1208,7 +1210,7 @@ export const TICKETS = [
     ],
     availableTill: "5th Oct 2025, 06:00 PM (GMT+05:30)",
     popular: false,
-    available: true,
+    available: false,
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56803",
   },
@@ -1231,7 +1233,7 @@ export const TICKETS = [
     ],
     availableTill: "5th Oct 2025, 06:00 PM (GMT+05:30)",
     popular: false,
-    available: true,
+    available: false,
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56804",
   },
@@ -1255,7 +1257,7 @@ export const TICKETS = [
     ],
     availableTill: "5th Oct 2025, 06:00 PM (GMT+05:30)",
     popular: false,
-    available: true,
+    available: false,
     konfhubUrl:
       "https://konfhub.com/checkout/open-source-day-2025?ticketId=56806",
   },

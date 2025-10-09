@@ -4,7 +4,7 @@ import Heading from "@components/Heading.astro";
 import CountdownTimer from "@components/CountdownTimer.jsx";
 import "@/styles/global.css";
 
-import { TICKETS, CONTACT } from "@/config.ts";
+import { TICKETS, CONTACT, eventEnded } from "@/config.ts";
 ---
 
 <Layout title="Tickets — 2025 OSD" activePath="/tickets">
@@ -101,37 +101,36 @@ import { TICKETS, CONTACT } from "@/config.ts";
                 ))}
               </ul>
 
-              {
-                // If this is the micro sponsor pack, show contact mailto CTA
-                ticket.name &&
-                ticket.name.toLowerCase().includes("micro sponsor") ? (
-                  <a
-                    href={`mailto:${
-                      CONTACT.email?.trim() ?? "opensourceweekend@gmail.com"
-                    }`}
-                    class={`block w-full py-4 rounded-full font-bold text-lg transition-all duration-200 text-center ${
-                      ticket.popular
-                        ? "bg-gradient-to-r from-yellow-200 via-emerald-300 via-60% to-green-500 text-black shadow-2xl ring-2 ring-yellow-100/60 glow-effect hover:from-yellow-100 hover:via-emerald-200 hover:to-green-400 hover:shadow-yellow-100/60 hover:scale-105"
-                        : "border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black"
-                    }`}
-                  >
-                    Contact Us
-                  </a>
-                ) : (
-                  <a
-                    href={ticket.konfhubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class={`block w-full py-4 rounded-full font-bold text-lg transition-all duration-200 text-center ${
-                      ticket.popular
-                        ? "bg-gradient-to-r from-yellow-200 via-emerald-300 via-60% to-green-500 text-black shadow-2xl ring-2 ring-yellow-100/60 glow-effect hover:from-yellow-100 hover:via-emerald-200 hover:to-green-400 hover:shadow-yellow-100/60 hover:scale-105"
-                        : "border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black"
-                    } ${!ticket.available && "pointer-events-none"}`}
-                  >
-                    {ticket.linkText ? ticket.linkText : "Register Now"}
-                  </a>
-                )
-              }
+              {/* Button logic: show disabled button if eventEnded is true */}
+              {eventEnded ? (
+                <button
+                  class={`block w-full py-4 rounded-full font-bold text-lg transition-all duration-200 text-center ${
+                    ticket.popular
+                      ? "bg-gradient-to-r from-yellow-200 via-emerald-300 via-60% to-green-500 text-black shadow-2xl ring-2 ring-yellow-100/60 glow-effect pointer-events-none opacity-60 cursor-not-allowed"
+                      : "border-2 border-green-500 text-green-400 pointer-events-none opacity-60 cursor-not-allowed"
+                  }`}
+                  aria-disabled="true"
+                  tabIndex={-1}
+                  disabled
+                  type="button"
+                >
+                  Event has ended
+                </button>
+              ) : (
+                // ...existing button logic for active tickets...
+                <a
+                  href={ticket.konfhubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={`block w-full py-4 rounded-full font-bold text-lg transition-all duration-200 text-center ${
+                    ticket.popular
+                      ? "bg-gradient-to-r from-yellow-200 via-emerald-300 via-60% to-green-500 text-black shadow-2xl ring-2 ring-yellow-100/60 glow-effect"
+                      : "border-2 border-green-500 text-green-400"
+                  }`}
+                >
+                  {ticket.linkText || "Register Now"}
+                </a>
+              )}
             </div>
           ))
         }
@@ -142,10 +141,6 @@ import { TICKETS, CONTACT } from "@/config.ts";
   <!-- Countdown appears here -->
   <div class="mt-5 py-16 px-4 bg-gradient-to-r from-green-50 to-green-100">
     <div class="max-w-5xl mx-auto text-center">
-      <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-10">
-        Countdown to the Event
-      </h3>
-
       <CountdownTimer client:load />
     </div>
   </div>
