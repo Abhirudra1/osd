@@ -85,14 +85,19 @@ const Hero = () => {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight flex flex-col items-center"
         >
           <div className="flex items-center">
-            <img
-              src={BRANDING.logos.main.src}
-              alt="Open Source Day Logo"
-              className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 "
-            />
             <span className="text-black">Thanks for making</span>
           </div>
-          <span className="gradient-text">OSD awesome.</span>
+          <span className="gradient-text inline-flex items-center">
+            <span className="sr-only">OSD awesome.</span>
+            <img
+              src={BRANDING.logos.main.src}
+              alt=""
+              aria-hidden="true"
+              className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 align-middle"
+              style={{ display: "inline-block" }}
+            />
+            <span className="ml-1">SD awesome.</span>
+          </span>
         </h1>
 
         <p
