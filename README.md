@@ -19,7 +19,7 @@ We are simultaneously improving the accuracy of data (removing mock data) and im
 1. You are free to create issues and work on it.
 2. Or you can catch an existing issue and continue.
 3. Just assign it to yourself so there will be no clash.
-4. Always `git pull origin main` before starting to work on your issue.
+4. Always `git pull origin main --rebase` before starting to work on your issue.
 
 ## Project Setup
 
