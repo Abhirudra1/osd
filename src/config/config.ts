@@ -86,6 +86,8 @@ export const CALLS_2026 = [
     emoji: "🎤",
     color: "from-violet-500 to-purple-600",
     badge: "Open",
+    deadline: "15th March 2026",
+    enable: true,
   },
   {
     title: "Call for Volunteers",
@@ -93,7 +95,9 @@ export const CALLS_2026 = [
     href: "/cfv",
     emoji: "🙌",
     color: "from-emerald-500 to-green-600",
-    badge: "Open",
+    badge: "CLOSED",
+    deadline: "CLOSED",
+    enable: false,
   },
   {
     title: "Call for Sponsors",
@@ -102,6 +106,8 @@ export const CALLS_2026 = [
     emoji: "🤝",
     color: "from-amber-500 to-orange-600",
     badge: "Open",
+    deadline: "31st March 2026",
+    enable: true,
   },
   {
     title: "Call for Community Partners",
@@ -110,6 +116,8 @@ export const CALLS_2026 = [
     emoji: "🌐",
     color: "from-sky-500 to-blue-600",
     badge: "Open",
+    deadline: "31st March 2026",
+    enable: true,
   },
   {
     title: "Call for Evangelists",
@@ -118,6 +126,8 @@ export const CALLS_2026 = [
     emoji: "📣",
     color: "from-pink-500 to-rose-600",
     badge: "Open",
+    deadline: "21st March 2026",
+    enable: true,
   },
 ];
 
@@ -373,7 +383,7 @@ export const TICKETS = [
       text: "Coming Soon",
       classes: "text-white bg-green-500",
     },
-    konfhubUrl: "",
+    konfhubUrl: "/purchase",
     linkText: "Coming Soon",
   },
   {
@@ -388,7 +398,7 @@ export const TICKETS = [
       text: "Most Popular",
       classes: "text-white bg-green-600",
     },
-    konfhubUrl: "",
+    konfhubUrl: "/purchase",
     linkText: "Coming Soon",
   },
   {
@@ -474,7 +484,7 @@ export const TICKETS = [
       "Appreciation Memento from OSD",
     ],
     popular: false,
-    available: false,
+    available: true,
     konfhubUrl: "mailto:opensourceweekend@gmail.com",
     linkText: "Contact Organizers",
     extra:
@@ -501,7 +511,7 @@ export const TICKETS = [
       "Appreciation Memento from OSD",
     ],
     popular: false,
-    available: false,
+    available: true,
     konfhubUrl: "mailto:opensourceweekend@gmail.com",
     linkText: "Contact Organizers",
     extra:
