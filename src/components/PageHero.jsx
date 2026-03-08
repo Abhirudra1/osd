@@ -82,7 +82,9 @@ const PageHero = ({ badge, title, titleGradient, subtitle, primaryCta, secondary
         {/* Hashtag footer — mirrors Hero.jsx */}
         <div className="mt-10 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-6 opacity-40">
           {hashTagList.map((tag) => (
-            <div className="text-xl font-bold text-gray-400">{tag}</div>
+            <div key={tag} className="text-xl font-bold text-gray-400">
+              {tag}
+            </div>
           ))}
         </div>
       </div>
