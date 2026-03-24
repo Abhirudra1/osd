@@ -143,131 +143,93 @@ export const CALLS_2026 = [
 ];
 
 export const eventSchedule = [
-  {
-    time: "08:00 AM – 09:30 AM",
-    title: "Registration & Welcome Kit",
-    speaker: "",
-    type: "registration",
-    room: "Lobby",
-  },
-  {
-    time: "09:30 AM – 10:00 AM",
-    title: "Warm Up Activity & Icebreaker",
-    speaker: "",
-    type: "activity",
-    room: "Main Auditorium",
-  },
-  {
-    time: "10:00 AM – 10:15 AM",
-    title: "Welcome Note",
-    speaker: "",
-    type: "opening",
-    room: "Main Auditorium",
-  },
-  {
-    time: "10:15 AM – 10:45 AM",
-    title: "Opening Keynote — TBA",
-    speaker: "Speaker TBA",
-    type: "keynote",
-    room: "Main Auditorium",
-  },
-  {
-    time: "10:45 AM – 11:30 AM",
-    title: "Technical Session — TBA",
-    speaker: "Speaker TBA",
-    type: "talk",
-    room: "Main Auditorium",
-  },
-  {
-    time: "11:30 AM – 12:45 PM",
-    title: "Devroom Workshop — TBA",
-    speaker: "Speaker TBA",
-    type: "Devroom (Parallel)",
-    room: "Secondary Hall",
-    isPanelLeft: true,
-  },
-  {
-    time: "11:30 AM – 12:00 PM",
-    title: "Technical Talk — TBA",
-    speaker: "Speaker TBA",
-    type: "talk",
-    room: "Main Auditorium",
-    isPanelRight: true,
-  },
-  {
-    time: "12:00 PM – 12:45 PM",
-    title: "CXO Panel Discussion",
-    speaker: "Panelists TBA",
-    type: "CXO Panel Discussion",
-    room: "Main Auditorium",
-    isPanelRight: true,
-  },
-  {
-    time: "12:45 PM – 01:45 PM",
-    title: "Lunch & Networking",
-    speaker: "",
-    type: "break",
-    room: "Food Court",
-  },
-  {
-    time: "01:45 PM – 03:00 PM",
-    title: "Hands-On Workshop — TBA",
-    speaker: "Speaker TBA",
-    type: "Devroom (Parallel)",
-    room: "Secondary Hall",
-    isPanelLeft: true,
-  },
-  {
-    time: "01:45 PM – 02:30 PM",
-    title: "Technical Talk — TBA",
-    speaker: "Speaker TBA",
-    type: "talk",
-    room: "Main Auditorium",
-    isPanelRight: true,
-  },
-  {
-    time: "02:30 PM – 03:00 PM",
-    title: "Technical Talk — TBA",
-    speaker: "Speaker TBA",
-    type: "talk",
-    room: "Main Auditorium",
-    isPanelRight: true,
-  },
-  {
-    time: "03:00 PM – 03:45 PM",
-    title: "Community Panel Discussion",
-    speaker: "Panelists TBA",
-    type: "Community Panel Discussion",
-    room: "Main Auditorium",
-  },
-  {
-    time: "03:45 PM – 04:15 PM",
-    title: "Technical Talk — TBA",
-    speaker: "Speaker TBA",
-    type: "talk",
-    room: "Main Auditorium",
-  },
-  {
-    time: "04:15 PM – 04:45 PM",
-    title: "Closing Keynote — TBA",
-    speaker: "Speaker TBA",
-    type: "Closing Keynote",
-    room: "Main Auditorium",
-  },
-  {
-    time: "04:45 PM – 05:00 PM",
-    title: "Closing Remarks",
-    speaker: "",
-    type: "Closing",
-    room: "Main Auditorium",
-  },
-  {
-    time: "05:00 PM – 05:30 PM",
-    title: "Goodies Distribution & Networking",
-    speaker: "",
-    type: "Social",
-    room: "Exhibition Hall",
-  },
+  // 08:00 – 09:30 - Registration & Welcome Kit (All Tracks)
+  { time: "08:00 AM – 09:30 AM", title: "Registration & Welcome Kit", speaker: "TBD", type: "registration", track: "Main Track", room: "LT1", isForAllTracks: true },
+  { time: "08:00 AM – 09:30 AM", title: "Registration & Welcome Kit", speaker: "TBD", type: "registration", track: "AI Track", room: "LT2", isForAllTracks: true },
+  { time: "08:00 AM – 09:30 AM", title: "Registration & Welcome Kit", speaker: "TBD", type: "registration", track: "Community Track", room: "LT3", isForAllTracks: true },
+  { time: "08:00 AM – 09:30 AM", title: "Registration & Welcome Kit", speaker: "TBD", type: "registration", track: "Emerging Track", room: "CEP 102", isForAllTracks: true },
+  { time: "08:00 AM – 09:30 AM", title: "Registration & Welcome Kit", speaker: "TBD", type: "registration", track: "DevRoom/Workshop", room: "CEP 110", isForAllTracks: true },
+
+  // 09:30 – 10:00 - Warm Up Activity & Icebreaker (All Tracks)
+  { time: "09:30 AM – 10:00 AM", title: "Warm Up Activity & Icebreaker", speaker: "TBD", type: "activity", track: "Main Track", room: "LT1", isForAllTracks: true },
+  { time: "09:30 AM – 10:00 AM", title: "Warm Up Activity & Icebreaker", speaker: "TBD", type: "activity", track: "AI Track", room: "LT2", isForAllTracks: true },
+  { time: "09:30 AM – 10:00 AM", title: "Warm Up Activity & Icebreaker", speaker: "TBD", type: "activity", track: "Community Track", room: "LT3", isForAllTracks: true },
+  { time: "09:30 AM – 10:00 AM", title: "Warm Up Activity & Icebreaker", speaker: "TBD", type: "activity", track: "Emerging Track", room: "CEP 102", isForAllTracks: true },
+  { time: "09:30 AM – 10:00 AM", title: "Warm Up Activity & Icebreaker", speaker: "TBD", type: "activity", track: "DevRoom/Workshop", room: "CEP 110", isForAllTracks: true },
+
+  // 10:00 – 10:15 - Welcome Note (All Tracks)
+  { time: "10:00 AM – 10:15 AM", title: "Welcome Note", speaker: "TBD", type: "opening", track: "Main Track", room: "LT1", isForAllTracks: true },
+  { time: "10:00 AM – 10:15 AM", title: "Welcome Note", speaker: "TBD", type: "opening", track: "AI Track", room: "LT2", isForAllTracks: true },
+  { time: "10:00 AM – 10:15 AM", title: "Welcome Note", speaker: "TBD", type: "opening", track: "Community Track", room: "LT3", isForAllTracks: true },
+  { time: "10:00 AM – 10:15 AM", title: "Welcome Note", speaker: "TBD", type: "opening", track: "Emerging Track", room: "CEP 102", isForAllTracks: true },
+  { time: "10:00 AM – 10:15 AM", title: "Welcome Note", speaker: "TBD", type: "opening", track: "DevRoom/Workshop", room: "CEP 110", isForAllTracks: true },
+
+  // 10:15 – 10:45 - Opening Keynote (All Tracks EXCEPT Devroom)
+  { time: "10:15 AM – 10:45 AM", title: "Opening Keynote", speaker: "TBD", type: "keynote", track: "Main Track", room: "LT1", isForAllTracks: true },
+  { time: "10:15 AM – 10:45 AM", title: "Opening Keynote", speaker: "TBD", type: "keynote", track: "AI Track", room: "LT2", isForAllTracks: true },
+  { time: "10:15 AM – 10:45 AM", title: "Opening Keynote", speaker: "TBD", type: "keynote", track: "Community Track", room: "LT3", isForAllTracks: true },
+  { time: "10:15 AM – 10:45 AM", title: "Opening Keynote", speaker: "TBD", type: "keynote", track: "Emerging Track", room: "CEP 102", isForAllTracks: true },
+  // Devroom: Workshop/DevRoom - 1 (10:15 – 11:15)
+  { time: "10:15 AM – 10:45 AM", title: "Workshop/DevRoom - 1", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T101500", end: "20260329T111500", rowspan: 2 },
+
+  // 10:45 – 11:15 - Technical Sessions + Workshop/DevRoom - 1 placeholder (skipped by rowspan)
+  { time: "10:45 AM – 11:15 AM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Main Track", room: "LT1" },
+  { time: "10:45 AM – 11:15 AM", title: "Technical Session", speaker: "TBD", type: "talk", track: "AI Track", room: "LT2" },
+  { time: "10:45 AM – 11:15 AM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Community Track", room: "LT3" },
+  { time: "10:45 AM – 11:15 AM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Emerging Track", room: "CEP 102" },
+  { time: "10:45 AM – 11:15 AM", title: "Workshop/DevRoom - 1", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T101500", end: "20260329T111500", isContinuation: true },
+
+  // 11:30 – 12:00 - Technical Sessions + CXO Panel + Workshop/DevRoom - 2 starts
+  { time: "11:30 AM – 12:00 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Main Track", room: "LT1" },
+  { time: "11:30 AM – 12:00 PM", title: "CXO Panel Discussion", speaker: "TBD", type: "cxo panel discussion", track: "AI Track", room: "LT2" },
+  { time: "11:30 AM – 12:00 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Community Track", room: "LT3" },
+  { time: "11:30 AM – 12:00 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Emerging Track", room: "CEP 102" },
+  { time: "11:30 AM – 12:00 PM", title: "Workshop/DevRoom - 2", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T113000", end: "20260329T124500", rowspan: 2 },
+
+  // 12:15 – 12:45 - CXO Panel Discussion, Lunch (LT2 & LT3), CXO/Community Panel, Workshop/DevRoom - 2 continues
+  { time: "12:15 PM – 12:45 PM", title: "CXO Panel Discussion", speaker: "TBD", type: "cxo panel discussion", track: "Main Track", room: "LT1" },
+  { time: "12:15 PM – 12:45 PM", title: "Lunch", speaker: "TBD", type: "break", track: "AI Track", room: "400" },
+  { time: "12:15 PM – 12:45 PM", title: "Lunch", speaker: "TBD", type: "break", track: "Community Track", room: "350" },
+  { time: "12:15 PM – 12:45 PM", title: "CXO/Community Panel", speaker: "TBD", type: "cxo panel discussion", track: "Emerging Track", room: "CEP 102" },
+  { time: "12:15 PM – 12:45 PM", title: "Workshop/DevRoom - 2", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T113000", end: "20260329T124500", isContinuation: true },
+  // 01:00 – 02:00 - Lunch (LT1, CEP 102, CEP 110), Technical Session (LT2 & LT3 start 1:15)
+  { time: "01:00 PM – 02:00 PM", title: "Lunch", speaker: "TBD", type: "break", track: "Main Track", room: "250" },
+  { time: "01:00 PM – 02:00 PM", title: "Technical Session (Start 1:15 PM)", speaker: "TBD", type: "talk", track: "AI Track", room: "LT2" },
+  { time: "01:00 PM – 02:00 PM", title: "Technical Session (Start 1:15 PM)", speaker: "TBD", type: "talk", track: "Community Track", room: "LT3" },
+  { time: "01:00 PM – 02:00 PM", title: "Lunch", speaker: "TBD", type: "break", track: "Emerging Track", room: "150" },
+  { time: "01:00 PM – 02:00 PM", title: "Lunch", speaker: "TBD", type: "break", track: "DevRoom/Workshop", room: "150" },
+
+  // 02:00 – 02:30 - Community Panel (LT1 & LT3), Technical Session (LT2), Technical Session (CEP 102), Workshop/DevRoom -3 starts
+  { time: "02:00 PM – 02:30 PM", title: "Community Panel Discussion", speaker: "TBD", type: "community panel discussion", track: "Main Track", room: "LT1" },
+  { time: "02:00 PM – 02:30 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "AI Track", room: "LT2" },
+  { time: "02:00 PM – 02:30 PM", title: "Community Panel Discussion", speaker: "TBD", type: "community panel discussion", track: "Community Track", room: "LT3" },
+  { time: "02:00 PM – 02:30 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Emerging Track", room: "CEP 102" },
+  { time: "02:00 PM – 02:30 PM", title: "Workshop/DevRoom - 3", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T140000", end: "20260329T151500", rowspan: 2 },
+
+  // 02:45 – 03:15 - Technical Session (LT1, LT3), Community Panel (LT2), Workshop -5 (CEP102) begins, Workshop/DevRoom -3 continues
+  { time: "02:45 PM – 03:15 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Main Track", room: "LT1" },
+  { time: "02:45 PM – 03:15 PM", title: "Community Panel Discussion", speaker: "TBD", type: "community panel discussion", track: "AI Track", room: "LT2" },
+  { time: "02:45 PM – 03:15 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Community Track", room: "LT3" },
+  { time: "02:45 PM – 03:15 PM", title: "Workshop - 5", speaker: "TBD", type: "workshop", track: "Emerging Track", room: "CEP 102", start: "20260329T144500", end: "20260329T160000", rowspan: 2 },
+  { time: "02:45 PM – 03:15 PM", title: "Workshop/DevRoom - 3", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T140000", end: "20260329T151500", isContinuation: true },
+  // 03:30 – 04:00 - Technical Session (LT1, LT2, LT3), Workshop/DevRoom -4
+  { time: "03:30 PM – 04:00 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Main Track", room: "LT1" },
+  { time: "03:30 PM – 04:00 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "AI Track", room: "LT2" },
+  { time: "03:30 PM – 04:00 PM", title: "Technical Session", speaker: "TBD", type: "talk", track: "Community Track", room: "LT3" },
+  { time: "03:30 PM – 04:00 PM", title: "Workshop/DevRoom - 4", speaker: "TBD", type: "workshop", track: "DevRoom/Workshop", room: "CEP 110", start: "20260329T153000", end: "20260329T170000", rowspan: 2 },
+  // 04:15 – 05:00 - Closing Keynote (All Tracks)
+  { time: "04:15 PM – 05:00 PM", title: "Closing Keynote", speaker: "TBD", type: "keynote", track: "Main Track", room: "LT1", isForAllTracks: true },
+  { time: "04:15 PM – 05:00 PM", title: "Closing Keynote", speaker: "TBD", type: "keynote", track: "AI Track", room: "LT2", isForAllTracks: true },
+  { time: "04:15 PM – 05:00 PM", title: "Closing Keynote", speaker: "TBD", type: "keynote", track: "Community Track", room: "LT3", isForAllTracks: true },
+  { time: "04:15 PM – 05:00 PM", title: "Closing Keynote", speaker: "TBD", type: "keynote", track: "Emerging Track", room: "CEP 102", isForAllTracks: true },
+  { time: "04:15 PM – 05:00 PM", title: "Closing Keynote", speaker: "TBD", type: "keynote", track: "DevRoom/Workshop", room: "CEP 110", isForAllTracks: true },
+
+  // 05:00 – 05:30 - Closing Remarks (All Tracks)
+  { time: "05:00 PM – 05:30 PM", title: "Closing Remarks", speaker: "TBD", type: "closing", track: "Main Track", room: "LT1", isForAllTracks: true },
+  { time: "05:00 PM – 05:30 PM", title: "Closing Remarks", speaker: "TBD", type: "closing", track: "AI Track", room: "LT2", isForAllTracks: true },
+  { time: "05:00 PM – 05:30 PM", title: "Closing Remarks", speaker: "TBD", type: "closing", track: "Community Track", room: "LT3", isForAllTracks: true },
+  { time: "05:00 PM – 05:30 PM", title: "Closing Remarks", speaker: "TBD", type: "closing", track: "Emerging Track", room: "CEP 102", isForAllTracks: true },
+  { time: "05:00 PM – 05:30 PM", title: "Closing Remarks", speaker: "TBD", type: "closing", track: "DevRoom/Workshop", room: "CEP 110", isForAllTracks: true },
 ];
 
 export const workshopSchedule = [

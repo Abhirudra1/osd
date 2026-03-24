@@ -24,6 +24,24 @@ const typeStyles: Record<string, { pill: string; bar: string; label: string }> =
 const getStyle = (type: string) =>
   typeStyles[type.toLowerCase()] ?? { pill: "bg-green-50 text-green-700 border-green-100", bar: "bg-green-400", label: type };
 
+const formatSessionTime = (datetime: string) => {
+  if (!datetime) return "";
+  const match = datetime.match(/^\d{4}(\d{2})(\d{2})T(\d{2})(\d{2})/);
+  if (!match) return "";
+
+  let hours = Number(match[3]);
+  const minutes = match[4];
+  const period = hours >= 12 ? "PM" : "AM";
+  if (hours === 0) hours = 12;
+  if (hours > 12) hours -= 12;
+  return `${String(hours).padStart(2, "0")}:${minutes} ${period}`;
+};
+
+const formatSessionTimeRange = (start: string, end: string) => {
+  const startTime = formatSessionTime(start);
+  const endTime = formatSessionTime(end);
+  return startTime && endTime ? `${startTime} – ${endTime}` : "";
+};
 
 ---
 
@@ -237,170 +255,422 @@ const getStyle = (type: string) =>
        MAIN CONFERENCE — PARALLEL TRACK GRID
   ════════════════════════════════════════════════════════════════════════ -->
   <section class="py-12 md:py-20 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-8 md:mb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
         <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-3">
-          Main <span class="gradient-text">Conference</span>
+          Conference <span class="gradient-text">Schedule</span>
         </h2>
-        <p class="text-gray-500 mb-2 text-sm md:text-base">A full day of talks, panels, workshops &amp; networking</p>
+        <p class="text-gray-500 mb-2 text-sm md:text-base">09:00 AM - 05:30 PM • Multiple parallel tracks running throughout the day</p>
         <p class="text-xs text-gray-400 italic">* Preview schedule — officially announced closer to the event</p>
       </div>
 
-      <!-- Track legend -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-8 md:mb-10">
-        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 px-4 py-2 rounded-full bg-gray-50 border border-gray-100 text-xs font-semibold">
-          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-green-400 inline-block shrink-0"></span>Main Auditorium</span>
-          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-violet-400 inline-block shrink-0"></span>Secondary Hall (Devroom)</span>
+      <!-- ══════════════════════════════════════════════════════════════════════
+           TRACK FILTERS
+      ════════════════════════════════════════════════════════════════════════ -->
+      <div class="mb-10">
+        <div class="text-center mb-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Filter by Track</h3>
+          <p class="text-sm text-gray-600">Select tracks to view sessions from specific areas of interest</p>
         </div>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <button onclick="filterByTrack('all')" id="filter-all" 
+            class="px-4 py-2 rounded-full text-sm font-semibold bg-green-500 text-white border-2 border-green-500 transition-all hover:bg-green-600 active-filter">
+            All Tracks
+          </button>
+          <button onclick="filterByTrack('Main Track')" id="filter-main"
+            class="px-4 py-2 rounded-full text-sm font-semibold bg-white text-gray-700 border-2 border-gray-300 hover:border-green-500 transition-all">
+            Main Track (LT1)
+          </button>
+          <button onclick="filterByTrack('AI Track')" id="filter-ai"
+            class="px-4 py-2 rounded-full text-sm font-semibold bg-white text-gray-700 border-2 border-gray-300 hover:border-blue-500 transition-all">
+            AI Track (LT2)
+          </button>
+          <button onclick="filterByTrack('Community Track')" id="filter-community"
+            class="px-4 py-2 rounded-full text-sm font-semibold bg-white text-gray-700 border-2 border-gray-300 hover:border-purple-500 transition-all">
+            Community Track (LT3)
+          </button>
+          <button onclick="filterByTrack('Emerging Track')" id="filter-emerging"
+            class="px-4 py-2 rounded-full text-sm font-semibold bg-white text-gray-700 border-2 border-gray-300 hover:border-orange-500 transition-all">
+            Emerging Track (CEP 102)
+          </button>
+          <button onclick="filterByTrack('DevRoom/Workshop')" id="filter-devroom"
+            class="px-4 py-2 rounded-full text-sm font-semibold bg-white text-gray-700 border-2 border-gray-300 hover:border-teal-500 transition-all">
+            DevRoom/Workshop (CEP 110)
+          </button>
+        </div>
+
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
-        {eventSchedule.map((session, i) => {
-          const s = getStyle(session.type);
-          const isParallelLeft  = session.isPanelLeft;
-          const isParallelRight = session.isPanelRight;
-          const isFullWidth     = !isParallelLeft && !isParallelRight;
-          const sid = `conf-${i}`;
+      <!-- Schedule Grid Table with Merged Cells for All-Track Sessions -->
+      <div class="hidden sm:block">
+        <div class="overflow-x-auto border border-gray-200 rounded-xl bg-white shadow-md">
+          <table class="w-full border-collapse table-fixed">
+          <colgroup>
+            <col style="width: 110px;" />
+            <col style="width: 18%;" />
+            <col style="width: 18%;" />
+            <col style="width: 18%;" />
+            <col style="width: 18%;" />
+            <col style="width: 18%;" />
+          </colgroup>
+          <!-- Header Row -->
+          <thead>
+            <tr class="bg-gradient-to-r from-gray-800 to-gray-700 text-white">
+              <th data-track="time" class="px-4 py-4 text-left font-bold text-sm w-24 border-r border-gray-600">Time</th>
+              <th data-track="Main Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+                <div class="flex flex-col items-center gap-1">
+                  <span>Main Track</span>
+                  <span class="text-xs font-normal text-gray-300">LT1</span>
+                </div>
+              </th>
+              <th data-track="AI Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+                <div class="flex flex-col items-center gap-1">
+                  <span>AI Track</span>
+                  <span class="text-xs font-normal text-gray-300">LT2</span>
+                </div>
+              </th>
+              <th data-track="Community Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+                <div class="flex flex-col items-center gap-1">
+                  <span>Community Track</span>
+                  <span class="text-xs font-normal text-gray-300">LT3</span>
+                </div>
+              </th>
+              <th data-track="Emerging Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+                <div class="flex flex-col items-center gap-1">
+                  <span>Emerging Track</span>
+                  <span class="text-xs font-normal text-gray-300">CEP 102</span>
+                </div>
+              </th>
+              <th data-track="DevRoom/Workshop" class="px-4 py-4 text-center font-bold text-sm">
+                <div class="flex flex-col items-center gap-1">
+                  <span>DevRoom/Workshop</span>
+                  <span class="text-xs font-normal text-gray-300">CEP 110</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <!-- Body -->
+          <tbody>
+            {
+              (() => {
+                const timeSlots = [
+                  "08:00 AM – 09:30 AM",
+                  "09:30 AM – 10:00 AM",
+                  "10:00 AM – 10:15 AM",
+                  "10:15 AM – 10:45 AM",
+                  "10:45 AM – 11:15 AM",
+                  "11:30 AM – 12:00 PM",
+                  "12:15 PM – 12:45 PM",
+                  "01:00 PM – 02:00 PM",
+                  "02:00 PM – 02:30 PM",
+                  "02:45 PM – 03:15 PM",
+                  "03:30 PM – 04:00 PM",
+                  "04:15 PM – 05:00 PM",
+                  "05:00 PM – 05:30 PM"
+                ];
+                const tracks = ["Main Track", "AI Track", "Community Track", "Emerging Track", "DevRoom/Workshop"];
+
+                const rowSpanTracker = /** @type {{[key: string]: number;}} */({});
+
+                const rows = timeSlots.map((time, timeIdx) => {
+                  // Get all sessions for this time slot (including row span handling)
+                  const sessionsByTrack: any = {};
+
+                  tracks.forEach((track) => {
+                    // Track occupied by previous row span
+                    if ((rowSpanTracker as any)[track] > 0) {
+                      sessionsByTrack[track] = { skipCell: true };
+                      (rowSpanTracker as any)[track] -= 1;
+                      return;
+                    }
+
+                    const found = eventSchedule.find((s: any) => s.time === time && s.track === track);
+                    if (!found) {
+                      sessionsByTrack[track] = { empty: true };
+                      return;
+                    }
+
+                    if (found.isContinuation) {
+                      // We should not display this, it's part of an ongoing rowSpan from previous slot.
+                      sessionsByTrack[track] = { skipCell: true };
+                      return;
+                    }
+
+                    const rowSpan = found.rowspan || 1;
+                    if (rowSpan > 1) {
+                      (rowSpanTracker as any)[track] = rowSpan - 1;
+                    }
+
+                    sessionsByTrack[track] = { session: found, rowSpan };
+                  });
+
+                  // Check for a full all-track event to render as one merged cell
+                  const allTrackCandidate = tracks.map(track => sessionsByTrack[track].session).filter(Boolean);
+                  const isAllTrack = allTrackCandidate.length === 5 && allTrackCandidate.every((s: any) => s.isForAllTracks && s.title === allTrackCandidate[0].title);
+
+                  const cellList: any[] = [];
+
+                  // Special 10:15 row: merge first 4 track Opening Keynote cards into one, keep DevRoom workshop as separate cell
+                  const isOpeningKeynoteRow = time === "10:15 AM – 10:45 AM";
+                  const openingGroupTracks = ["Main Track", "AI Track", "Community Track", "Emerging Track"];
+                  const hasOpening4 = isOpeningKeynoteRow && openingGroupTracks.every(track => {
+                    const s = sessionsByTrack[track];
+                    return s.session && s.session.title === "Opening Keynote" && s.session.isForAllTracks;
+                  });
+
+                  if (hasOpening4) {
+                    const mergedSession = sessionsByTrack["Main Track"].session;
+                    cellList.push({
+                      session: mergedSession,
+                      tracksInMerge: [...openingGroupTracks],
+                      isMerged: true,
+                      rowSpan: 1,
+                    });
+
+                    const devRoomEntry = sessionsByTrack["DevRoom/Workshop"];
+                    if (devRoomEntry.skipCell) {
+                      cellList.push({ skipCell: true });
+                    } else if (devRoomEntry.empty || !devRoomEntry.session) {
+                      cellList.push({ empty: true });
+                    } else {
+                      cellList.push({
+                        session: devRoomEntry.session,
+                        tracksInMerge: ["DevRoom/Workshop"],
+                        isMerged: false,
+                        rowSpan: devRoomEntry.rowSpan || 1,
+                      });
+                    }
+                  } else if (isAllTrack) {
+                    const mergedSession = allTrackCandidate[0];
+                    cellList.push({
+                      session: mergedSession,
+                      tracksInMerge: [...tracks],
+                      isMerged: true,
+                      rowSpan: mergedSession.rowspan || 1,
+                    });
+                  } else {
+                    tracks.forEach((track) => {
+                      const entry = sessionsByTrack[track];
+                      if (entry.skipCell) {
+                        cellList.push({ skipCell: true });
+                      } else if (entry.empty || !entry.session) {
+                        cellList.push({ empty: true });
+                      } else {
+                        cellList.push({
+                          session: entry.session,
+                          tracksInMerge: [track],
+                          isMerged: false,
+                          rowSpan: entry.rowSpan || 1,
+                        });
+                      }
+                    });
+                  }
+
+                  const workshopCell = cellList.find(c => c.session && c.session.type === 'workshop' && c.rowSpan > 1 && c.session.start && c.session.end);
+                  const displayTime = workshopCell
+                    ? formatSessionTimeRange(workshopCell.session.start, workshopCell.session.end)
+                    : time.split(' – ')[0];
+
+                  return { time, timeIdx, cells: cellList, displayTime };
+                });
+
+                return (
+                  rows.map((row: any) => (
+                    <tr class={`border-b border-gray-200 hover:bg-gray-50 transition-colors ${row.timeIdx % 2 === 0 ? 'bg-white' : 'bg-gray-25'}`}>
+                      <td class="px-4 py-4 font-bold text-sm text-green-600 font-mono bg-gray-50 border-r border-gray-200 align-top">
+                        {row.time.split(' – ')[0]}
+                      </td>
+                      {row.cells.map((cell: any) => {
+                        if (cell.skipCell) {
+                          return null;
+                        }
+
+                        if (cell.empty) {
+                          return (
+                            <td class="px-3 py-4 border-r border-gray-200 text-center text-gray-300 text-xs align-top">
+                              —
+                            </td>
+                          );
+                        }
+
+                        const session = cell.session;
+                        const s = getStyle(session.type);
+                        const sessionId = `session-grid-${eventSchedule.indexOf(session)}`;
+                        const trackLabel = cell.isMerged
+                          ? cell.tracksInMerge.length === 5
+                            ? "All Tracks"
+                            : `${cell.tracksInMerge.length} Tracks`
+                          : cell.tracksInMerge[0];
+                        const trackData = cell.isMerged
+                          ? cell.tracksInMerge.join(',')
+                          : cell.tracksInMerge[0];
+
+                        const sessionTimeText = session.start && session.end
+                          ? formatSessionTimeRange(session.start, session.end)
+                          : session.time;
+
+                        const isContinuing = session.isContinuation || session.rowspan > 1;
+                        const rowspanAttr = cell.rowSpan > 1 ? cell.rowSpan : undefined;
+
+                        return (
+                          <td data-track={trackLabel} data-tracks={trackData} data-colspan={cell.isMerged ? cell.tracksInMerge.length : 1} rowspan={rowspanAttr} colspan={cell.isMerged ? cell.tracksInMerge.length : 1} class={`px-3 py-3 ${cell.isMerged ? '' : 'border-r'} border-gray-200 align-top schedule-item`}>
+                            <div class={`${cell.isMerged ? 'bg-gradient-to-r from-blue-50 to-white border border-blue-200' : 'bg-gradient-to-br from-white to-gray-50 border border-gray-200'} rounded-lg p-3 hover:shadow-md transition-all relative group ${isContinuing ? 'min-h-[160px]' : 'min-h-[120px]'}`}>
+                              <div class={`absolute left-0 top-0 bottom-0 ${cell.isMerged ? 'w-1.5' : 'w-1'} ${s.bar} rounded-l-lg`}></div>
+
+                              <div class="pl-2">
+                                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                  <span class={`inline-block text-xs font-bold px-2 py-0.5 rounded-full border ${s.pill}`}>
+                                    {s.label}
+                                  </span>
+                                  {cell.isMerged && (
+                                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200">
+                                      {trackLabel}
+                                    </span>
+                                  )}
+                                </div>
+
+                                <h4 class="font-bold text-gray-900 text-xs leading-tight mb-1">
+                                  {session.title}
+                                </h4>
+
+                                {sessionTimeText && (
+                                  <p class="text-gray-500 text-xs mb-1">{sessionTimeText}</p>
+                                )}
+
+                                <p class="text-gray-600 text-xs mb-1.5">by {session.speaker}</p>
+
+                                <p class="text-gray-500 text-xs mb-2.5 flex items-center gap-1.5">
+                                  <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                  </svg>
+                                  <span class="truncate text-xs">{session.room}</span>
+                                </p>
+
+                                <button
+                                  data-add-btn={sessionId}
+                                  onclick={`window.toggleSession('${sessionId}')`}
+                                  data-title={session.title}
+                                  data-time={session.time}
+                                  data-speaker={session.speaker}
+                                  data-room={session.room}
+                                  data-type={session.type}
+                                  data-track={trackLabel}
+                                  class={`agenda-add-btn w-full flex items-center justify-center gap-1 px-2 py-1.5 rounded text-xs font-bold transition-all ${
+                                    cell.isMerged
+                                      ? 'border border-blue-300 bg-white text-blue-700 hover:bg-blue-50'
+                                      : 'border border-gray-300 bg-white text-gray-600 hover:border-green-500 hover:text-green-700 hover:bg-green-50'
+                                  }`}
+                                >
+                                  <svg class="add-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                                  </svg>
+                                  <span class="btn-label">Add to Schedule</span>
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))
+                );
+              })()
+            }
+          </tbody>
+        </table>
+      </div>
+      </div>
+
+      <!-- Mobile schedule cards -->
+      <div class="sm:hidden space-y-3">
+        {(() => {
+          const uniqueItems: any[] = [];
+          const seenKeys = new Set();
+          for (const session of eventSchedule) {
+            if (session.isContinuation) continue;
+            const key = session.isForAllTracks
+              ? `${session.title}__${session.time}__ALL`
+              : `${session.title}__${session.track}__${session.time}`;
+            if (seenKeys.has(key)) continue;
+            seenKeys.add(key);
+            uniqueItems.push(session);
+          }
+          return uniqueItems.map((session: any, i: number) => {
+            const sstyle = getStyle(session.type);
+          
+          // For multi-slot sessions (rowspan > 1), find the continuation to get the end time
+          let sessionTimeText = session.time;
+          if (session.start && session.end) {
+            sessionTimeText = formatSessionTimeRange(session.start, session.end);
+          } else if (session.rowspan && session.rowspan > 1) {
+            // Look for continuation entry with matching title and track to get the end time
+            const continuation = eventSchedule.find((c: any) => 
+              c.isContinuation && 
+              c.title === session.title && 
+              c.track === session.track &&
+              c.end
+            );
+            if (continuation && session.start && continuation.end) {
+              sessionTimeText = formatSessionTimeRange(session.start, continuation.end);
+            }
+          }
+          
+          const cardTrack = session.isForAllTracks ? 'All Tracks' : session.track;
 
           return (
-            <div
-              id={`card-${sid}`}
-              data-session-id={sid}
-              data-title={session.title}
-              data-time={session.time}
-              data-speaker={session.speaker || ""}
-              data-room={session.room || ""}
-              data-type={session.type}
-              data-track="Main Conference"
-              class={[
-                "group relative bg-white border border-gray-100 rounded-2xl overflow-hidden",
-                "transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:border-green-200",
-                isFullWidth     ? "md:col-span-2" : "",
-                isParallelLeft  ? "md:col-span-1 md:row-span-2" : "",
-                isParallelRight ? "md:col-span-1" : "",
-              ].filter(Boolean).join(" ")}
-            >
-              <div class={`absolute left-0 top-0 bottom-0 w-1 ${s.bar}`}></div>
-              <div class="p-5 pl-6 h-full flex flex-col justify-between gap-3">
-
-                <!-- Top: time + pills -->
-                <div class="flex items-start justify-between gap-2 flex-wrap">
-                  <span class="text-green-600 font-bold text-xs sm:text-sm font-mono leading-tight min-w-fit">{session.time}</span>
-                  <div class="flex items-center gap-1.5 flex-wrap justify-end">
-                    <span class={`text-xs font-bold px-2 py-0.5 rounded-full border ${s.pill} whitespace-nowrap`}>{s.label}</span>
-                    {isParallelLeft  && <span class="text-xs font-bold px-2 py-0.5 rounded-full border bg-violet-50 text-violet-700 border-violet-100 whitespace-nowrap">Parallel</span>}
-                    {isParallelRight && <span class="text-xs font-bold px-2 py-0.5 rounded-full border bg-gray-50 text-gray-500 border-gray-100 whitespace-nowrap">Main Hall</span>}
-                  </div>
-                </div>
-
-                <!-- Middle: title + speaker -->
-                <div class="flex-1">
-                  <h3 class={`font-bold text-gray-900 mb-1 leading-snug group-hover:text-green-700 transition-colors ${
-                    isFullWidth ? "text-sm sm:text-base md:text-lg" : "text-sm md:text-base"
-                  }`}>
-                    {session.title}
-                  </h3>
-                  {session.speaker && <p class="text-gray-500 text-xs font-medium">by {session.speaker}</p>}
-                </div>
-
-                <!-- Bottom: room + Add to Schedule button -->
-                <div class="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 pt-1">
-                  {session.room && (
-                    <span class="flex items-center gap-1 text-xs text-gray-400">
-                      <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                      </svg>
-                      {session.room}
-                    </span>
-                  )}
-                  <button
-                    data-add-btn={sid}
-                    onclick={`window.toggleSession('${sid}')`}
-                    class="agenda-add-btn w-full xs:w-auto md:w-auto flex items-center justify-center gap-1.5 px-3 py-2 xs:py-1.5 md:px-3 md:py-1 rounded-full text-xs font-bold border border-gray-300 bg-white text-gray-600 hover:border-green-500 hover:text-green-700 hover:bg-green-50 transition-all duration-200 ml-auto shrink-0"
-                  >
-                    <svg class="add-icon w-3.5 h-3.5 md:w-3 md:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
-                    </svg>
-                    <span class="btn-label">Add to Schedule</span>
-                  </button>
-                </div>
-
+            <div class="mobile-session-card border border-gray-200 rounded-xl p-4 bg-white shadow-sm" data-track={cardTrack}>
+              <div class="flex justify-between items-start gap-2 mb-2 flex-wrap">
+                <span class="text-xs font-bold text-green-600 font-mono">{sessionTimeText}</span>
+                <span class={`text-xs font-semibold px-2 py-1 rounded ${sstyle.pill}`}>{sstyle.label}</span>
               </div>
+
+              <h4 class="font-bold text-gray-900 text-base mb-1">{session.title}</h4>
+              {session.speaker && <p class="text-gray-600 text-xs mb-1.5">by {session.speaker}</p>}
+              <p class="text-gray-500 text-xs mb-2">{session.room}</p>
+              <p class="text-xs text-gray-400 mb-1">{cardTrack}</p>
+              {session.isForAllTracks && (
+                <span class="inline-flex items-center px-2 py-1 text-[10px] font-semibold rounded-full bg-blue-100 text-blue-700 border border-blue-200">
+                  Repeated session (All Tracks)
+                </span>
+              )}
+              <div class="h-2"></div>
+
+              <button
+                data-add-btn={`mobile-${i}`}
+                data-title={session.title}
+                data-time={sessionTimeText}
+                data-speaker={session.speaker}
+                data-room={session.room}
+                data-type={session.type}
+                data-track={cardTrack}
+                onclick={`window.toggleSession('mobile-${i}')`}
+                class="agenda-add-btn w-full py-2 rounded-lg border border-gray-300 text-xs font-bold text-gray-700 hover:bg-green-50 transition-all flex items-center justify-center gap-2"
+              >
+                <svg class="add-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+                </svg>
+                <span class="btn-label">Add to Schedule</span>
+              </button>
             </div>
           );
-        })}
+        });
+      })()}
       </div>
+
+      <!-- Empty state -->
+      {eventSchedule.length === 0 && (
+        <div class="flex flex-col items-center justify-center py-16">
+          <svg class="w-12 h-12 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+          </svg>
+          <p class="text-gray-500 text-sm">No sessions scheduled yet</p>
+        </div>
+      )}
     </div>
   </section>
-
-  <!-- ══════════════════════════════════════════════════════════════════════
-       WORKSHOP TRACK
-  ════════════════════════════════════════════════════════════════════════ -->
-  <section class="py-12 md:py-20 px-4 bg-gray-50">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-3">
-          Workshop <span class="gradient-text">Track</span>
-        </h2>
-        <p class="text-gray-500 text-sm md:text-base">Hands-on sessions running in parallel to the main conference</p>
-      </div>
-
-      <!-- Same card grid as Main Conference -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {workshopSchedule.map((item, i) => {
-          const s = getStyle(item.type);
-          const sid = `workshop-${i}`;
-          return (
-            <div
-              id={`card-${sid}`}
-              class="group relative bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:border-green-200"
-            >
-              <!-- Left color bar -->
-              <div class={`absolute left-0 top-0 bottom-0 w-1 ${s.bar}`}></div>
-
-              <div class="p-5 pl-6 h-full flex flex-col justify-between gap-4">
-
-                <!-- Top: time + pill -->
-                <div class="flex items-start justify-between gap-2 flex-wrap">
-                  <span class="text-green-600 font-bold text-sm font-mono leading-tight min-w-fit">{item.time}</span>
-                  <span class={`text-xs font-bold px-2.5 py-1 rounded-full border ${s.pill} whitespace-nowrap shrink-0`}>{s.label}</span>
-                </div>
-
-                <!-- Middle: title + speaker -->
-                <div class="flex-1">
-                  <h3 class="font-bold text-gray-900 text-base leading-snug group-hover:text-green-700 transition-colors">{item.title}</h3>
-                  {item.speaker && <p class="text-gray-500 text-xs mt-0.5 font-medium">by {item.speaker}</p>}
-                </div>
-
-                <!-- Bottom: Add to Schedule -->
-                <div class="flex items-center justify-end">
-                  <button
-                    data-add-btn={sid}
-                    onclick={`window.toggleSession('${sid}')`}
-                    data-title={item.title}
-                    data-time={item.time}
-                    data-speaker={item.speaker || ""}
-                    data-room=""
-                    data-type={item.type}
-                    data-track="Workshop"
-                    class="agenda-add-btn w-full md:w-auto flex items-center justify-center gap-1.5 px-3 py-2 md:px-3 md:py-1 rounded-full text-xs font-bold border border-gray-300 bg-white text-gray-600 hover:border-green-500 hover:text-green-700 hover:bg-green-50 transition-all duration-200 shrink-0"
-                  >
-                    <svg class="add-icon w-3.5 h-3.5 md:w-3 md:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
-                    </svg>
-                    <span class="btn-label">Add to Schedule</span>
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
 
   <!-- Bottom CTA -->
   <section class="py-16 px-4 bg-white text-center">
@@ -569,44 +839,43 @@ function syncButtons() {
     const isAdded = addedIds.has(sid);
     btn.classList.toggle('is-added', isAdded);
 
-    const icon = btn.querySelector('.add-icon');
+      const icon = btn.querySelector('.add-icon');
     const label = btn.querySelector('.btn-label');
     if (isAdded) {
-      icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>`;
-      label.textContent = 'Added ✓';
+      if (icon) {
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>`;
+      }
+      if (label) {
+        label.textContent = 'Added ✓';
+      } else {
+        btn.textContent = 'Added ✓';
+      }
     } else {
-      icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>`;
-      label.textContent = 'Add to Schedule';
+      if (icon) {
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>`;
+      }
+      if (label) {
+        label.textContent = 'Add to Schedule';
+      } else {
+        btn.textContent = '+ Add to Schedule';
+      }
     }
   });
 }
 
 /* ── Toggle a session (called from onclick on conference cards) ──── */
 window.toggleSession = function(sid) {
-  // Read session data from data attributes on the card
-  const card = document.getElementById(`card-${sid}`);
-  let title, time, speaker, room, type, track;
+  // Find the button and read data from it
+  const btn = document.querySelector(`[data-add-btn="${sid}"]`);
+  if (!btn) return;
 
-  if (card && card.dataset.title) {
-    // Conference card has data-* attrs
-    title   = card.dataset.title;
-    time    = card.dataset.time;
-    speaker = card.dataset.speaker;
-    room    = card.dataset.room;
-    type    = card.dataset.type;
-    track   = card.dataset.track;
-  } else {
-    // Workshop card — read from button's onclick args via a secondary lookup
-    const btn = document.querySelector(`[data-add-btn="${sid}"]`);
-    // Fallback: parse from nearby DOM
-    const wrapper = btn?.closest('[id]') || btn?.closest('.flex-1');
-    title   = wrapper?.querySelector('h3')?.textContent?.trim() || sid;
-    time    = wrapper?.querySelector('.font-mono')?.textContent?.trim() || '';
-    speaker = wrapper?.querySelector('p')?.textContent?.replace(/^by\s*/,'').trim() || '';
-    room    = '';
-    type    = 'workshop';
-    track   = 'Workshop';
-  }
+  // Read session data from button's data attributes
+  const title   = btn.dataset.title;
+  const time    = btn.dataset.time;
+  const speaker = btn.dataset.speaker;
+  const room    = btn.dataset.room;
+  const type    = btn.dataset.type;
+  const track   = btn.dataset.track;
 
   const agenda = getAgenda();
   const existingIdx = agenda.findIndex(i => i.id === sid);
@@ -618,7 +887,7 @@ window.toggleSession = function(sid) {
     // Add
     agenda.push({ id: sid, title, time, speaker, room, type, track });
     // Flash the card
-    const cardEl = document.getElementById(`card-${sid}`);
+    const cardEl = btn.closest('.session-card');
     if (cardEl) {
       cardEl.classList.add('card-added');
       setTimeout(() => cardEl.classList.remove('card-added'), 600);
@@ -816,6 +1085,108 @@ window.downloadNote = function() {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 
+
+/* ── Filter by Track ────────────────────────────────────────────── */
+window.filterByTrack = function(track) {
+  // Update active filter button
+  document.querySelectorAll('[id^="filter-"]').forEach(btn => {
+    btn.classList.remove('active-filter', 'bg-green-500', 'text-white', 'border-green-500');
+    btn.classList.add('bg-white', 'text-gray-700', 'border-gray-300');
+  });
+
+  const trackToId = {
+    'all': 'filter-all',
+    'Main Track': 'filter-main',
+    'AI Track': 'filter-ai',
+    'Community Track': 'filter-community',
+    'Emerging Track': 'filter-emerging',
+    'DevRoom/Workshop': 'filter-devroom'
+  };
+
+  const activeBtn = document.getElementById(trackToId[track] || 'filter-all');
+  if (activeBtn) {
+    activeBtn.classList.add('active-filter');
+    activeBtn.classList.remove('bg-white', 'text-gray-700', 'border-gray-300');
+    activeBtn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+  }
+
+  const banner = document.getElementById('selected-track-banner');
+  if (banner) {
+    if (track === 'all') {
+      banner.textContent = 'Showing: All Tracks';
+      banner.classList.add('hidden');
+    } else {
+      banner.textContent = `Showing: ${track}`;
+      banner.classList.remove('hidden');
+    }
+  }
+
+  // Header visibility and full-width selected track heading
+  const allTh = Array.from(document.querySelectorAll('thead th'));
+  const timeTh = allTh.find(th => th.getAttribute('data-track') === 'time');
+  const trackThs = allTh.filter(th => th.getAttribute('data-track') && th.getAttribute('data-track') !== 'time');
+
+  if (track === 'all') {
+    allTh.forEach(th => {
+      th.style.display = '';
+      if (th.getAttribute('data-track') !== 'time') {
+        th.colSpan = 1;
+      }
+    });
+  } else {
+    allTh.forEach(th => {
+      const thTrack = th.getAttribute('data-track');
+      if (thTrack === 'time') {
+        th.style.display = '';
+        th.colSpan = 1;
+      } else if (thTrack === track) {
+        th.style.display = '';
+        th.colSpan = 5;
+      } else {
+        th.style.display = 'none';
+      }
+    });
+  }
+
+  document.querySelectorAll('tbody tr').forEach(row => {
+    let hasVisibleSession = false;
+
+    row.querySelectorAll('td').forEach((td, index) => {
+      if (index === 0) {
+        // time column handled at end
+        return;
+      }
+      const tdTracks = td.getAttribute('data-tracks') || td.getAttribute('data-track') || '';
+      if (!tdTracks) {
+        td.style.display = 'none';
+        return;
+      }
+
+      const normalizedTracks = tdTracks.split(',').map(t => t.trim());
+      const isMatch = track === 'all' || normalizedTracks.includes(track) || normalizedTracks.includes('All Tracks');
+
+      td.style.display = isMatch ? '' : 'none';
+      if (isMatch) hasVisibleSession = true;
+    });
+
+    const timeCell = row.querySelector('td:first-child');
+    if (timeCell) {
+      timeCell.style.display = hasVisibleSession ? '' : 'none';
+    }
+    row.style.display = hasVisibleSession ? '' : 'none';
+  });
+
+  // Mobile cards filter
+  document.querySelectorAll('.mobile-session-card').forEach(card => {
+    if (track === 'all') {
+      card.style.display = '';
+      return;
+    }
+
+    const cardTrack = card.getAttribute('data-track');
+    card.style.display = (cardTrack === 'All Tracks' || cardTrack === track) ? '' : 'none';
+  });
+};
 
 /* ── Open / close drawer ────────────────────────────────────────── */
 let agendaOpen = false;
