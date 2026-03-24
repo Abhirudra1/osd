@@ -260,8 +260,7 @@ const formatSessionTimeRange = (start: string, end: string) => {
         <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-3">
           Conference <span class="gradient-text">Schedule</span>
         </h2>
-        <p class="text-gray-500 mb-2 text-sm md:text-base">09:00 AM - 05:30 PM • Multiple parallel tracks running throughout the day</p>
-        <p class="text-xs text-gray-400 italic">* Preview schedule — officially announced closer to the event</p>
+        <p class="text-gray-500 mb-2 text-sm md:text-base">08:00 AM - 05:30 PM • Multiple parallel tracks running throughout the day</p>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════════════════
@@ -316,36 +315,36 @@ const formatSessionTimeRange = (start: string, end: string) => {
           </colgroup>
           <!-- Header Row -->
           <thead>
-            <tr class="bg-gradient-to-r from-gray-800 to-gray-700 text-white">
-              <th data-track="time" class="px-4 py-4 text-left font-bold text-sm w-24 border-r border-gray-600">Time</th>
-              <th data-track="Main Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+            <tr class="bg-gradient-to-r from-green-600 to-green-700 text-white">
+              <th data-track="time" class="px-4 py-4 text-left font-bold text-sm w-24 border-r border-green-500">Time</th>
+              <th data-track="Main Track" class="px-4 py-4 text-center font-bold text-sm border-r border-green-500">
                 <div class="flex flex-col items-center gap-1">
                   <span>Main Track</span>
-                  <span class="text-xs font-normal text-gray-300">LT1</span>
+                  <span class="text-xs font-normal text-green-100">LT1</span>
                 </div>
               </th>
-              <th data-track="AI Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+              <th data-track="AI Track" class="px-4 py-4 text-center font-bold text-sm border-r border-green-500">
                 <div class="flex flex-col items-center gap-1">
                   <span>AI Track</span>
-                  <span class="text-xs font-normal text-gray-300">LT2</span>
+                  <span class="text-xs font-normal text-green-100">LT2</span>
                 </div>
               </th>
-              <th data-track="Community Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+              <th data-track="Community Track" class="px-4 py-4 text-center font-bold text-sm border-r border-green-500">
                 <div class="flex flex-col items-center gap-1">
                   <span>Community Track</span>
-                  <span class="text-xs font-normal text-gray-300">LT3</span>
+                  <span class="text-xs font-normal text-green-100">LT3</span>
                 </div>
               </th>
-              <th data-track="Emerging Track" class="px-4 py-4 text-center font-bold text-sm border-r border-gray-600">
+              <th data-track="Emerging Track" class="px-4 py-4 text-center font-bold text-sm border-r border-green-500">
                 <div class="flex flex-col items-center gap-1">
                   <span>Emerging Track</span>
-                  <span class="text-xs font-normal text-gray-300">CEP 102</span>
+                  <span class="text-xs font-normal text-green-100">CEP 102</span>
                 </div>
               </th>
               <th data-track="DevRoom/Workshop" class="px-4 py-4 text-center font-bold text-sm">
                 <div class="flex flex-col items-center gap-1">
                   <span>DevRoom/Workshop</span>
-                  <span class="text-xs font-normal text-gray-300">CEP 110</span>
+                  <span class="text-xs font-normal text-green-100">CEP 110</span>
                 </div>
               </th>
             </tr>
@@ -515,7 +514,7 @@ const formatSessionTimeRange = (start: string, end: string) => {
                         const rowspanAttr = cell.rowSpan > 1 ? cell.rowSpan : undefined;
 
                         return (
-                          <td data-track={trackLabel} data-tracks={trackData} data-colspan={cell.isMerged ? cell.tracksInMerge.length : 1} rowspan={rowspanAttr} colspan={cell.isMerged ? cell.tracksInMerge.length : 1} class={`px-3 py-3 ${cell.isMerged ? '' : 'border-r'} border-gray-200 align-top schedule-item`}>
+                          <td data-track={trackLabel} data-tracks={trackData} data-original-rowspan={rowspanAttr || 1} data-colspan={cell.isMerged ? cell.tracksInMerge.length : 1} rowspan={rowspanAttr} colspan={cell.isMerged ? cell.tracksInMerge.length : 1} class={`px-3 py-3 ${cell.isMerged ? '' : 'border-r'} border-gray-200 align-top schedule-item`}>
                             <div class={`${cell.isMerged ? 'bg-gradient-to-r from-blue-50 to-white border border-blue-200' : 'bg-gradient-to-br from-white to-gray-50 border border-gray-200'} rounded-lg p-3 hover:shadow-md transition-all relative group ${isContinuing ? 'min-h-[160px]' : 'min-h-[120px]'}`}>
                               <div class={`absolute left-0 top-0 bottom-0 ${cell.isMerged ? 'w-1.5' : 'w-1'} ${s.bar} rounded-l-lg`}></div>
 
@@ -631,11 +630,11 @@ const formatSessionTimeRange = (start: string, end: string) => {
               {session.speaker && <p class="text-gray-600 text-xs mb-1.5">by {session.speaker}</p>}
               <p class="text-gray-500 text-xs mb-2">{session.room}</p>
               <p class="text-xs text-gray-400 mb-1">{cardTrack}</p>
-              {session.isForAllTracks && (
+              {/* {session.isForAllTracks && (
                 <span class="inline-flex items-center px-2 py-1 text-[10px] font-semibold rounded-full bg-blue-100 text-blue-700 border border-blue-200">
                   Repeated session (All Tracks)
                 </span>
-              )}
+              )} */}
               <div class="h-2"></div>
 
               <button
@@ -673,9 +672,9 @@ const formatSessionTimeRange = (start: string, end: string) => {
   </section>
 
   <!-- Bottom CTA -->
-  <section class="py-16 px-4 bg-white text-center">
-    <h3 class="text-xl font-bold text-gray-900 mb-2">Want to be <span class="gradient-text">notified</span> when the schedule is out?</h3>
-    <p class="text-gray-500 mb-3 text-sm">Follow us or get in touch directly</p>
+  <section class="py-16 pb-12 px-4 bg-white text-center">
+    <h3 class="text-xl font-bold text-gray-900 mb-2">Questions about the <span class="gradient-text">schedule</span>?</h3>
+    <p class="text-gray-500 mb-3 text-sm">Get in touch with us directly</p>
     <a href="mailto:opensourceweekend@gmail.com" class="text-green-600 hover:underline font-semibold text-sm">
       opensourceweekend@gmail.com
     </a>
@@ -911,7 +910,7 @@ window.removeSession = function(sid) {
 function buildICSContent() {
   const items = getAgenda();
   if (!items.length) return null;
-  const EVENT_DATE = '20260329';
+  const EVENT_DATE = '20260404';
   function toICSTime(timeStr) {
     const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
     if (!match) return '090000';
@@ -965,7 +964,7 @@ window.closeCalendarPicker = function() {
 // Google Calendar — show all sessions as direct links (no popup blocker issues)
 window.openGoogleCalendar = function() {
   const items = getAgenda().sort((a,b) => a.time.localeCompare(b.time));
-  const EVENT_DATE = '20260329';
+  const EVENT_DATE = '20260404';
   function toGCalTime(timeStr) {
     const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
     if (!match) return '090000';
@@ -1166,6 +1165,19 @@ window.filterByTrack = function(track) {
       const isMatch = track === 'all' || normalizedTracks.includes(track) || normalizedTracks.includes('All Tracks');
 
       td.style.display = isMatch ? '' : 'none';
+      
+      // Fix rowspan layout breaking when hiding rows
+      if (track === 'all') {
+        const origSpan = td.getAttribute('data-original-rowspan');
+        if (origSpan && origSpan !== '1') {
+          td.setAttribute('rowspan', origSpan);
+        }
+      } else {
+        if (td.hasAttribute('rowspan') && td.getAttribute('rowspan') !== '1') {
+          td.setAttribute('rowspan', '1');
+        }
+      }
+
       if (isMatch) hasVisibleSession = true;
     });
 
