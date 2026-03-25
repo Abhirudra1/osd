@@ -28,7 +28,7 @@ export const BRANDING = {
 export const EVENT = {
   name: "Open Source Day 2026",
   shortName: "OSD2026",
-  date: "TBA",
+  date: "04 April 2026",
   location: "Gandhinagar, Gujarat, India",
   tagline: "Join the largest open source developer conference of the year. Learn, network, and contribute to the future of technology.",
   description:
@@ -72,6 +72,7 @@ export const NAVIGATION = {
     { name: "Sponsors", href: "/sponsors" },
     { name: "Venue", href: "/venue" },
     { name: "Past Events", href: "/past-events" },
+    { name: "Badge", href: "/badge" },
   ],
   cta: {
     text: "OSD 2025",
@@ -87,8 +88,9 @@ export const CALLS_2026 = [
     emoji: "🎤",
     color: "from-violet-500 to-purple-600",
     badge: "Open",
-    deadline: "25th March 2026",
+    deadline: "Extended: 25th March 2026",
     enable: true,
+    extraInfo: "Travel Grants available",
   },
   {
     title: "Call for Volunteers",
@@ -96,8 +98,8 @@ export const CALLS_2026 = [
     href: "/cfv",
     emoji: "🙌",
     color: "from-emerald-500 to-green-600",
-    badge: "CLOSED",
-    deadline: "CLOSED",
+    badge: "Application Closed",
+    deadline: "",
     enable: false,
   },
   {
@@ -126,9 +128,9 @@ export const CALLS_2026 = [
     href: "/cfe",
     emoji: "📣",
     color: "from-pink-500 to-rose-600",
-    badge: "Open",
-    deadline: "21st March 2026",
-    enable: true,
+    badge: "Application Closed",
+    deadline: "",
+    enable: false,
   },
   {
     title: "Call for Booth",
@@ -359,7 +361,7 @@ export const TICKETS = [
   },
   {
     name: "Regular Ticket",
-    price: "₹700",
+    price: "₹560",
     originalPrice: 700,
     description: "Full conference access including lunch, keynotes, panels, and OSD goodies.",
     features: ["Full-access to conference", "Breakfast & Lunch", "Keynotes, Panels, Workshop", "OSD Goodies"],
