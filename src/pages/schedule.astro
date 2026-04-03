@@ -551,7 +551,9 @@ const formatSessionTimeRange = (start: string, end: string) => {
 
                                 {sessionTimeText && <p class="text-gray-500 text-xs mb-1">{sessionTimeText}</p>}
 
-                                <p class="text-gray-600 text-xs mb-1.5">by {session.speaker}</p>
+                                {(session.speaker && session.speaker !== "TBD") && (
+                                  <p class="text-gray-600 text-xs mb-1.5">by {session.speaker}</p>
+                                )}
 
                                 <p class="text-gray-500 text-xs mb-2.5 flex items-center gap-1.5">
                                   <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
